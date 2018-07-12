@@ -1,0 +1,305 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Guld Application</title>
+
+    <meta property="og:url" content="https://guld.app" />
+    <meta property="og:image" content="http://guld.app/img/og.jpg" />
+    <meta property="og:title" content="Guld Application" />
+    <meta property="og:description" content="A new decentralized internet" />
+
+    <!-- favicon -->
+    <link rel="icon" href="img/favicon.png">
+ 	<meta name="theme-color" content="#000000">   
+
+    <!-- web-fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+    <!-- style css -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- HTML5 shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+	<!-- chrome app -->
+	<!-- <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/fggohbjlmjldccoelobkepngbkkebefi"> -->
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar" data-offset="70">
+	<nav class="navbar sticky-top navbar-expand-sm navbar-light">
+        <a class="navbar-brand" href="#page-top">
+            <img id="logo" src="img/logo.svg" class="img-responsive" alt="Guld">
+        </a>
+	   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	   </button>
+  		<div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#section-gw">Guld Wallet</a>
+                </li>	            
+                <li class="nav-item">
+                    <a class="nav-link" href="#section-contact">Contact</a>
+                </li>
+            </ul>
+  		</div>
+	</nav>
+
+    <header class="header">
+        <div id="welcome">
+            <div class="text">Guld App Framework</div>
+            <div class="center">
+			<img class="guld" src="img/guld.svg" alt="Guld">
+            </div>
+            <div class="description">A new decentralized internet where users control their own data &amp; digital identity</div>
+            <a href="#section-gw" class="btn mx-auto">Get Started</a>
+        </div>
+        <div id="social">
+            <a id="telegram" href="https://t.me/guldblocktree">
+                <i class="fab fa-telegram-plane"></i>
+            </a>
+            <a id="facebook" href="https://www.facebook.com/guldblocktree">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a id="twitter" href="https://twitter.com/guldcoin">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </div>
+    </header>    
+    
+    <div class="container-fluid">
+
+        <section id="section-gw" class="section-wrapper gray-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="section-title">
+                            <h1>Guld Wallet</h1>
+                        </div>
+                    </div>
+                </div>
+				  <div id="about" class="row">
+					<div class="col-md-12">
+						<h2>Installation Instructions</h2><br>
+
+						<h4>Before you install</h4><br>
+
+						<p>Currently, this extension runs only on the following operating systems:</p>
+						<ul>
+							<li>macOS (10.12.x or later)</li>
+							<li>Linux (Ubuntu/Mint/Gentoo recommended)</li>
+							<li>Windows (7 or later)</li><br>
+						</ul>
+						
+						<p>In addition, you'll need:</p>
+						<ul>
+							<li><a href="https://www.python.org/downloads">Python 2.7 or later</a></li>
+							<li><a href="https://www.google.com/chrome">Chrome</a></li>
+							<li>or Chromium
+								<a href="https://chromium.woolyss.com/download/#mac">Mac</a>
+								<a href="https://chromium.woolyss.com/download/#linux">Linux</a>  							
+								<a href="https://chromium.woolyss.com/download/#windows">Windows</a>
+							</li>
+							<li>an Internet connection</li>
+						</ul><br>
+						
+						<h4>Installation</h4><br>
+						
+						<p>Once your system meets the minimum requirements, you can install the various components: the <code>ledger-cli</code> application, our <code>ledger-native</code> bindings, and finally the Chrome extension.</p>
+						
+						<br><h4>Installing ledger-cli</h4><br>
+
+						<p>The first package you need to install is <code>ledger-cli</code>, the command-line based accounting system. This allows the extensions to interact with the Guld ledger.</p>
+
+						<br><h5>On macOS</h5><br>
+
+						<p>Using the <a href="https://brew.sh">Brew</a> package manager, run the following command from a <code>Terminal</code> window:</p>
+						
+						<pre>brew install ledger</pre>
+						
+						<br><h5>On Linux</h5><br>
+
+						<p>The <a href="https://www.ledger-cli.org/download.html">ledger download page</a> has links to <code>ledger</code> versions for several linux distributions.</p>
+
+						<p><strong>*</strong> We only support ledger 3.1.1 and later. As of this writing, the <strong>Slackware</strong>, <strong>CentOS</strong>, and <strong>OpenSUSE</strong> packages were out of date, and may not work correctly with our extensions.</p>
+					
+						<br><h5>On Windows</h5><br>
+
+						<p>Download and unzip <a href="https://github.com/AlexanderAA/ledger_binaries_windows/raw/master/ledger_3.1.1_win_bin.zip">ledger_3.1.1_win_bin.zip</a>.</p>
+					
+						<br><h4>Installing the ledger-native bindings</h4><br>
+
+						<p>The <code>ledger-native</code> bindings allow the extensions to interact with the <code>ledger-cli</code> application. The bindings are necessary as browser-based extensions cannot interact directly with command lines.</p>
+					
+						<br><h5>On macOS and Linux</h5><br>
+
+						<p>To install the ledger-native bindings on macOS or Linux:</p>
+					
+					<ol>
+						<li><a href="https://github.com/guldcoin/ledger-native/archive/master.zip">Download</a> (or clone, if you're handy with <code>git</code>) the <a href="https://github.com/guldcoin/ledger-native">ledger-native</a> repository into your home directory, or another location if you'd prefer.</li>
+
+						<br><p><strong>*</strong> The next step assumes you placed the ledger-native files into your home directory. Adjust accordingly if you placed them elsewhere.</p><br>
+
+						<li>Open a shell window (such as Terminal on macOS) and issue the following commands:</li>
+
+						<br><pre>cd ledger-native
+./install_host.sh</pre><br>
+
+						<li>To uninstall the host, run <code>./uninstall_host.sh</code></li>
+					</ol>
+
+						<br><h5>On Windows</h5><br>
+
+						<p>To install the ledger-native bindings on Windows:</p>
+					
+					<ol>
+						<li><a href="https://github.com/guldcoin/ledger-native/archive/master.zip">Download</a> (or clone, if you're handy with <code>git</code>) the <a href="https://github.com/guldcoin/ledger-native">ledger-native</a> repository into your home directory, or another location if you'd prefer.</li>
+
+							<br><li>In an Explorer window, navigate to the <code>ledger-native</code> folder.</li>
+
+							<br><li>Double-click the <code>install_host.bat</code> script to install the native messaging host for the current Windows user.</li>
+					</ol>
+					
+					<br><h4>Install the Guld Wallet Extension</h4><br>
+					
+						<p>The extension will soon be available from the Chrome Web Store.</p>
+					
+						<!-- <button type="button" class="btn btn-outline-primary" onclick="chrome.webstore.install()">Add to Chrome</button><br><br> -->
+					
+						<p>To install the extension directly from the Github repository, download <a href="https://github.com/guldcoin/guld-chrome/archive/master.zip">guld-chrome</a> or run <code>git clone https://github.com/guldcoin/guld-chrome.git</code> to clone the repository.</p> 
+					
+						<p>Then, in your browser:</p>
+					
+						<ol>
+							<li>Navigate to <a href="chrome://extensions">chrome://extensions</a>.</li>
+
+							<li>Turn on the Developer Mode switch in the upper-right corner.</li>
+
+							<li>Click the <code>Load Unpacked</code> button.</li>
+
+							<li>Navigate to the location you downloaded or cloned the repository, and click Select.</li>
+						</ol>
+
+						<p>The Guld Wallet extension's icon will show up on the Chrome toolbar, with a "WAIT" overlay. After a few minutes, the extension will finish its initial setup, and will be ready to use. The Guld Games extension is ready to use as soon as it's installed.</p>					
+
+					<br><h4>Setting up Guld Wallet</h4><br>
+					
+						<p>Once the extension has finished its initial setup, the "WAIT" overlay on its icon will disappear.</p>
+
+						<p>Click the Guld Wallet icon on the Chrome toolbar to open the interface in a new tab. You'll be prompted to enter your GitHub credentials.</p>
+
+						<p><strong>*A GitHub account is required to use Guld Wallet. If you don't log into your account, the extension will not work.</strong></p>
+
+						<p>On the welcome screen, you can either <strong>generate</strong> a Guld identity, or <strong>import</strong> an existing identity. Identities are tied to PGP keys, so this step is actually generating a (or importing an existing, in the case of existing Guld users) PGP key.</p>
+
+						<br><p>To <strong>generate a new Guld identity</strong> and PGP key:</p>
+						<ol>
+							<li>Select the "generate" radio button.</li>
+
+							<li>Choose a Guld username.</li>
+
+							<li>Optionally, enter your name.</li>
+
+							<li>Enter your email address.</li>
+							<span>Note that this email address will be publicly available in the ledger. Don't use an address you don't want to be made public.</span>
+
+							<li>Enter a strong passphrase for the new PGP key, and confirm it.</li>
+							<span>Keep your passphrase stored securely. There is no way to recover a lost passphrase.</span>
+
+							<li>Click <strong>Create</strong> to create your new Guld identity and PGP key.</li>
+						</ol>	
+
+						<br><p>To <strong>import an existing Guld identity</strong> and PGP key:</p>
+						<ol>
+							<li>Select the "import" radio button.</li>
+
+							<li>Export the private key you used to register your Guld Identity from your preferred PGP key manager.</li>
+
+							<li>Copy and paste the exported private key into the "ASCII Armored Private Key" box.</li>
+
+							<li>Enter your existing Guld username.</li>
+
+							<li>Enter the passphrase for the private PGP key.</li>
+
+							<li>Click <strong>Import</strong> to import your private key and Guld Identity</li>
+						</ol>
+						
+						<span><strong>*</strong>If you get an error when trying to use your existing Guld username, check the "Expert Mode" box and try the import again.</span>					
+														
+					</div>
+	            </div>
+            </div><!-- .container -->
+        </section><!-- #section-gw -->
+
+        <section id="section-contact" class="section-wrapper gray-bg">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <a href="mailto:info@guld.app?Subject=Contact Form" rel="nofollow" class="btn btn-primary btn-lg">SEND US MAIL</a>
+                    </div>
+                </div>
+
+            </div><!-- .container -->
+        </section><!-- #section-contact -->
+
+        <footer class="footer">
+            <div class="row">
+                <div class="col-8">
+                    <div class="copytext">&copy; Guld. All rights reserved</div>
+                </div>
+                <div class="col-4">
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <a href="https://t.me/guldblocktree">
+                                <i class="fab fa-telegram-plane"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://www.facebook.com/guldblocktree">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://twitter.com/guldcoin">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+        <!-- .footer -->
+    </div>
+
+    <!-- jquery -->
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <!-- javascript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>    
+    <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
+    <script src="js/script.js"></script>
+    <!-- global site tag (gtag.js) - google analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114107562-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-114107562-1');
+    </script>
+</body>
+</html>
