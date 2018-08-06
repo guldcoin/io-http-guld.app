@@ -40,16 +40,38 @@
     <section id="section-wallet" class="section-wrapper mf">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 text-center">
-                    <!--
-                      Populates the dashboard view at the top of the UI, with user's name and balances.
+                <div class="col-md-3"></div>
+                <div class="col-md-6 text-center">
+                  <!--
+                    Populates the Send UI.
 
-                      This list's styling is controlled by selectors in style.css.
-                    -->
-                    <h1 id="guldname"></h1>
-                    <h3 id="fullname"></h3>
-                    <div id="balance-details" class="row"></div>
+                    This form's styling is controlled by selectors in style.css. Currently, the only
+                    defined selector is .col-form-label.
+                  -->
+                  <form id="guld-transfer-form">
+                    <div class="form-group row">
+                      <label for="sender" class="col-sm-5 col-form-label">Sender</label>
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control" id="guld-transaction-sender" placeholder="Sender" required="" disabled> </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="recipient" class="col-sm-5 col-form-label">Recipient</label>
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control" id="guld-transaction-recipient" placeholder="Recipient" required=""> </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="amount" class="col-sm-5 col-form-label">Amount</label>
+                      <div class="col-sm-7">
+                        <input type="number" step=".00000001" min="0" class="form-control" id="guld-spend-amount" placeholder="3.5" required=""> </div>
+                    </div>
+                    <div class="modal-footer row">
+                      <div class="col-sm-12">
+                        <button class="btn btn-primary" type="submit">send</button>
+                      </div>
+                    </div>
+                  </form>
                 </div>
+                <div class="col-md-3"></div>
             </div>
         </div>
     </section>

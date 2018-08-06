@@ -40,16 +40,44 @@
     <section id="section-wallet" class="section-wrapper mf">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 text-center">
-                    <!--
-                      Populates the dashboard view at the top of the UI, with user's name and balances.
+                <div class="col-md-3"></div>
+                <div class="col-md-6 text-center">
+<!--
+  Populates the registration UI.
 
-                      This list's styling is controlled by selectors in style.css.
-                    -->
-                    <h1 id="guldname"></h1>
-                    <h3 id="fullname"></h3>
-                    <div id="balance-details" class="row"></div>
+  The 'submit' even listener is defined in js/register.js.
+
+  This form's styling is controlled by several selectors in style.css.
+-->
+<form id="registration-form">
+  <div class="row">
+    <label for="receiver" class="col-sm-5 col-form-label">Registration Type</label>
+    <div class="col-sm-7">
+      <select id="guld-registration-type" class="form-control" disabled >
+        <option value="individual" selected>Individual</option>
+        <option value="group">Group</option>
+        <!--<option value="device">Device</option>-->
+      </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="sender" class="col-sm-5 col-form-label">Name</label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control" id="guld-registration-name" placeholder="name to register" required=""> </div>
+  </div>
+  <div id="guld-spend-amount-div" class="form-group row">
+    <label for="amount" class="col-sm-5 col-form-label">Amount</label>
+    <div class="col-sm-7">
+      <input type="number" step=".1" class="form-control" id="guld-spend-amount" placeholder="1"> </div>
+  </div>
+  <div class="modal-footer row">
+    <div class="col-sm-12">
+      <button class="btn btn-primary" type="submit">register</button>
+    </div>
+  </div>
+</form>
                 </div>
+                <div class="col-md-3"></div>
             </div>
         </div>
     </section>

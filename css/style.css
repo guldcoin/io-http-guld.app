@@ -7,35 +7,32 @@ Website: https://chrissmejia.com & https://riomyers.com
 */
 body {
     font-family: 'Roboto', sans-serif;
-    color: #353e55;
     font-weight: 300;
+    background: #000000;
+    background-image: url("../img/background.png") no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    min-height: 100%;
+    color: #fff;
+    margin: 0;
 }
 
 h1,h2,h3,h4,h5,h6 {
-    color: #264175;
+    color: #D0B460;
     font-weight: 300;
 }
 
 h3 { margin-bottom: 1rem;}
 
 .btn-primary {
-    color: #fff;
-    background-color: #274175;
-    border-color: #3b4a5a;
+    color: #000;
+    background-color: #D0B460;
+    border-color: #fff;
 }
 
-a {color: #274175;}
+a {color: #D0B460;}
 
 a:hover{text-decoration: none;}
-
-#section-about a, #section-gw a {
-	color: #000;
-	font-weight: bold;
-}
-
-#section-about a, #section-gw a:hover {color: #274175;}
-
-#section-gw span{color: darkblue;}
 
 .btn:hover{cursor: pointer;}
 
@@ -52,7 +49,6 @@ pre {
 	font-size: .95em;
 	line-height: 1.8em;
 }
-
 
 code{
 	background-color: #f7f7f7;
@@ -86,13 +82,13 @@ span.typed-cursor {
     margin: 2rem 0 1.4rem;
 }
 
-.navbar {
-    background: url("../img/bg.png") no-repeat center center fixed;
-    background-color: #000;
+.navbar-nav {
+    font-size: 1.5em;
+    color: #D0B460;
 }
 
-.navbar-light .navbar-toggler {
-    background: rgba(251, 251, 251, 0.8);
+.svg-inline--fa,.fa-rocket,.fa-user-astronaut,.dropdown-toggle,.active-commodity {
+    color: #D0B460 !important;
 }
 
 .navbar #logo {
@@ -181,116 +177,7 @@ span.typed-cursor {
     padding: 0.6rem 0.9rem;
 }
 
-#read_seminar {
-    margin-top: 4rem;
-}
-
-.seminar-countdown {
-    text-align: center;
-    font-size: 2rem;
-    color: #fff;
-    font-weight: 400;
-    opacity: 0.9;
-    height: 4rem;
-    display: inline-block;
-}
-
-.seminar-countdown .time {
-    border-radius: 5px;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
-    display: inline-block;
-    text-align: center;
-    position: relative;
-    height: 8rem;
-    width: 6rem;
-    perspective: 479px;
-    backface-visibility: hidden;
-    transform: translateZ(0);
-    transform: translate3d(0, 0, 0);
-}
-
-.seminar-countdown .count {
-    background: #202020;
-    color: #f8f8f8;
-    display: block;
-    font-family: 'Oswald', sans-serif;
-    font-size: 3.3rem;
-    line-height: 2.4em;
-    overflow: hidden;
-    position: absolute;
-    text-align: center;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-    top: 0;
-    width: 100%;
-    transform: translateZ(0);
-    transform-style: flat;
-}
-
-.seminar-countdown .count.top {
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 5px 5px 0 0;
-    height: 50%;
-    transform-origin: 50% 100%;
-}
-
-.seminar-countdown .count.bottom {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.1), transparent);
-    border-top: 1px solid #000;
-    border-bottom: 1px solid #000;
-    border-radius: 0 0 5px 5px;
-    line-height: 0;
-    height: 50%;
-    top: 50%;
-    transform-origin: 50% 0;
-}
-
-.seminar-countdown {
-    color: #fff;
-    font-weight: 400;
-    margin-bottom: 11rem;
-}
-
-.seminar-countdown h1 {
-    color: #fff;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-}
-
-.seminar-countdown .label {
-    font-weight: 500;
-    text-shadow: 0 1px 0 #010101;
-    margin-top: 5px;
-    display: block;
-    position: absolute;
-    top: 8rem;
-    width: 100%;
-    color: #fff;
-}
-
-/* Animation start */
-.seminar-countdown .count.curr.top {
-    transform: rotateX(0deg);
-    z-index: 3;
-}
-
-.seminar-countdown .count.next.bottom {
-    transform: rotateX(90deg);
-    z-index: 2;
-}
-
-/* Animation end */
-.seminar-countdown .flip .count.curr.top {
-    transition: all 250ms ease-in-out;
-    transform: rotateX(-90deg);
-}
-
-.seminar-countdown .flip .count.next.bottom {
-    transition: all 250ms ease-in-out 250ms;
-    transform: rotateX(0deg);
-}
-
 a.nav-link {
-    color: #fff !important;
     font-weight: 400;
     text-shadow: 0 0 20px #000000;
     opacity: 0.8;
@@ -300,9 +187,9 @@ a.nav-link {
 .navbar-light .navbar-nav .nav-link.active,
 .navbar-light .navbar-nav .nav-link.show,
 .navbar-light .navbar-nav .show>.nav-link {
-    color: #fff;
     font-weight: 500;
     opacity: 1;
+    flex-direction: row;
 }
 
 .section-title h1 {
@@ -322,6 +209,7 @@ a.nav-link {
 .container-fluid {
     padding: 0;
     margin: -0.4rem 0 0 0;
+    min-height: 80%;
 }
 
 section {
@@ -400,6 +288,15 @@ section {
     color: #c5c5c5;
     font-weight: 400;
     background: none;
+}
+
+.balance-card {
+  margin: 2.5%;
+  min-width: 33%;
+}
+
+.balance-card a {
+    color: #D0B460;
 }
 
 #section-network img {
@@ -519,9 +416,8 @@ section {
     color: #888888;
 }
 
-.footer ul {
-    margin: 0;
-    float: right;
+.footer a {
+    color: #D0B460;
 }
 
 .footer .row {
@@ -597,6 +493,24 @@ section {
 
 .msg-content {
     height: var(--msg-content-height);
+}
+
+.dropdown-menu {
+    max-height: 420px;
+    overflow: auto;
+}
+
+.form-group {
+    margin: 0.5em;
+}
+
+#login-user {
+    width: 150px;
+    display: inline;
+}
+
+.login-dropdown {
+    width: 215px;
 }
 
 /*Animation Names*/
@@ -899,3 +813,45 @@ section {
         font-size: 0.8em;
         top: 72px;
 }
+
+#loading-div {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.8);
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    text-align: center;
+    padding-top: 32%;
+    display: block;
+}
+
+.loading #loading-div {
+    display: block;
+}
+
+#loading-message-div {
+    display: inline-block;
+    padding: 1rem 3rem;
+    border-radius: 0.4rem;
+}
+
+#loading-message-div h3 {
+    color: #727272;
+}
+
+.loader {
+    border: 16px solid #323232; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
