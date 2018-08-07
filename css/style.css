@@ -169,6 +169,10 @@ section {
     margin: 0 0.25em;
 }
 
+.dash-card {
+    max-width: 80%
+}
+
 .thumbnail img {
     object-fit: cover;
     height: 10rem;

@@ -27,6 +27,7 @@ async function loadPerspective (pers) {
     window.observer = persp
     await loadGuldVals()
     await showBalances()
+    await showMemberDetails()
   } else {
     errorDisplay.setError(`Could not find perspective`)
   }
@@ -35,19 +36,8 @@ async function loadPerspective (pers) {
 async function loadGuldVals () {
   var gnameDiv = document.getElementById('guldname-new')
   if (gnameDiv) gnameDiv.value = observer.user.username
-  var fullnameDiv = document.getElementById('fullname-new')
-  if (fullnameDiv) fullnameDiv.value = observer.user.name
   gnameDiv = document.getElementById('guldname')
   if (gnameDiv) gnameDiv.innerText = observer.user.username
-  fullnameDiv = document.getElementById('fullname')
-  if (fullnameDiv) {
-    if (observer.user.name) fullnameDiv.innerText = observer.user.name
-    else fullnameDiv.innerText = ""
-  }
-  var gmailDiv = document.getElementById('guldmail')
-  if (gmailDiv) gmailDiv.value = observer.user.email
-  var gfprDiv = document.getElementById('guldfpr')
-  if (gfprDiv) gmailDiv.value = observer.user.singningkey || ''
   return observer
 }
 
@@ -167,8 +157,80 @@ async function showBalanceDetails (gname) {
 }
 //usdValDiv.innerHTML = `~ ${assets.value.toDecimalPlaces(2).toString()} USD`
 
-async function showBalanceDetail (gname) {
+async function showMemberDetails (gname) {
+  gname = gname || observer.user.username
+  var memDetails = document.getElementById('member-details')
+  var cdiv
+  if (memDetails && window.observer && observer.user) {
+    cdiv = `<div id="member-detail-card" class="card member-card"><div class="card-header"><h4>Profile</h4></div>
+  <div id="member-detail-card-body" class="card-body">
+  <table class="table">`
+    if (observer.user.name) {
+      cdiv = `${cdiv}\n<tr><th class="color-guld">Full Name</th><td class="color-guld">${observer.user.name}</td></tr>`
+    }
+    if (observer.user.location) {
+      cdiv = `${cdiv}\n<tr><th class="color-guld">Location</th><td class="color-guld">${observer.user.location}</td></tr>`
+    }
+    if (observer.user.bio) {
+      cdiv = `${cdiv}\n<tr><th class="color-guld">Bio</th><td class="color-guld">${observer.user.bio}</td></tr>`
+    }
+    if (observer.user.website) {
+      var url
+      if (observer.user.website.startsWith('http')) url = observer.user.website
+      else url = `http://${observer.user.website}`
+      cdiv = `${cdiv}\n<tr><th class="color-guld">Website</th><td class="color-guld"><a href="${url}" target="_blank">${observer.user.website}</a></td></tr>`
+    }
+    if (observer.user.email) {
+      cdiv = `${cdiv}\n<tr><th class="color-guld">Email</th><td class="color-guld">${observer.user.email}</td></tr>`
+    }
+    if (observer.user.signingkey) {
+      cdiv = `${cdiv}\n<tr><th class="color-guld">PGP Key</th><td class="color-guld">${observer.user.signingkey}</td></tr>`
+    }
+    if (observer.aliases) {
+      cdiv = `${cdiv}\n<tr><th class="color-guld">Aliases</th><td class="color-guld"><ul class="list-inline">`
+      if (observer.aliases.github) {
+        cdiv = `${cdiv}\n<li class="list-inline-item"><a href="https://github.com/${observer.aliases.github}"><i class="fab fa-github"></i></li>`
+      }
+      if (observer.aliases.bitbucket) {
+        cdiv = `${cdiv}\n<li class="list-inline-item"><a href="https://bitbucket.org/${observer.aliases.bitbucket}"><i class="fab fa-bitbucket"></i></li>`
+      }
+      if (observer.aliases.npm) {
+        cdiv = `${cdiv}\n<li class="list-inline-item"><a href="https://npmjs.org/~${observer.aliases.npm}"><i class="fab fa-npm"></i></li>`
+      }
+      if (observer.aliases.telegram) {
+        cdiv = `${cdiv}\n<li class="list-inline-item"><a href="https://t.me/${observer.aliases.github}"><i class="fab fa-telegram-plane"></i></li>`
+      }
+      if (observer.aliases.facebook) {
+        cdiv = `${cdiv}\n<li class="list-inline-item"><a href="https://facebook.com/${observer.aliases.facebook}"><i class="fab fa-facebook-f"></i></li>`
+      }
+      if (observer.aliases.twitter) {
+        cdiv = `${cdiv}\n<li class="list-inline-item"><a href="https://twitter.com/${observer.aliases.twitter}"><i class="fab fa-twitter"></i></li>`
+      }
+      if (observer.aliases.reddit) {
+        cdiv = `${cdiv}\n<li class="list-inline-item"><a href="https://reddit.com/user/${observer.aliases.reddit}"><i class="fab fa-reddit"></i></li>`
+      }
+      if (observer.aliases.youtube) {
+        cdiv = `${cdiv}\n<li class="list-inline-item"><a href="https://youtube.com/channel/${observer.aliases.reddit}"><i class="fab fa-youtube"></i></li>`
+      }
+      if (observer.aliases.twitch) {
+        cdiv = `${cdiv}\n<li class="list-inline-item"><a href="https://twitch.tv/${observer.aliases.twitch}"><i class="fab fa-twitch"></i></li>`
+      }
+      if (observer.aliases.instagram) {
+        cdiv = `${cdiv}\n<li class="list-inline-item"><a href="https://instagram.com/${observer.aliases.instagram}"><i class="fab fa-instagram"></i></li>`
+      }
+      if (observer.aliases.hackernews) {
+        cdiv = `${cdiv}\n<li class="list-inline-item"><a href="https://news.ycombinator.com/user?id=${observer.aliases.hackernews}"><i class="fab fa-hacker-news-square"></i></li>`
+      }
+      if (observer.aliases.keybase) {
+        cdiv = `${cdiv}\n<li class="list-inline-item"><a href="https://keybase.io/${observer.aliases.keybase}"><i class="fab fa-keybase"></i></li>`
+      }
+      cdiv = `${cdiv}\n</ul></td></tr>`
+    }
+    cdiv = `${cdiv}\n</table></div>`
+  }
+  if (memDetails && cdiv) memDetails.innerHTML = `${memDetails.innerHTML}\n${cdiv}`
 }
+
 
 async function getEquityCache () {
   if (!window.hasOwnProperty('equity_cache')) {
@@ -277,9 +339,10 @@ function showTransactionTypes () {
   ]
 
   ttypes = {
-    'GULD': ['send'], // , 'register', 'grant'
     'GG': ['send', 'burn'],
-    'BTC': ['deposit', 'convert']
+    'ISYSD': ['send'],
+//    'BTC': ['deposit', 'convert'],
+    'GULD': ['send'] // , 'register', 'grant'
   }
   alltypes.forEach(ttype => {
     if (ttypes[commodity] && ttypes[commodity].indexOf(ttype) >= 0) {
