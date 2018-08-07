@@ -8,6 +8,7 @@ rm js/qs-local-window.js; cp -f ~/tech/js/node_modules/qs-local-window/qs-local-
 rm js/error-display.js; cp -f ~/tech/js/node_modules/error-display/error-display.js js/
 rm js/load-html-component.js; cp -f ~/tech/js/node_modules/load-html-component/load-html-component.js js/
 rm js/ini.min.js; cp -f ~/tech/js/node_modules/git-config-ini/ini.min.js js/
+rm js/openpgp.min.js; cp -f ~/tech/js/node_modules/openpgp/dist/openpgp.min.js js/
 rm js/ledger-types.min.js; cp -f ~/tech/js/node_modules/ledger-types/ledger-types.min.js js/
 rm js/keyring-pgp.min.js; cp -f ~/tech/js/node_modules/keyring-pgp/keyring-pgp.min.js js/
 rm js/guld-ledger-transfer.min.js; cp -f ~/tech/js/node_modules/guld-ledger-transfer/guld-ledger-transfer.min.js js/
