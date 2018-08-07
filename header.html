@@ -3,36 +3,36 @@
         <img id="logo" src="/img/logo.svg" class="img-responsive" alt="Guld">
     </a>
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle ledger-amount active-commodity" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" id="balance">0 GULD</a>
-        <div class="dropdown-menu dropdown-menu-right" id="token-dropdown">
-          <a href="javascript:changeCommodity('GULD')" id="send" class="dropdown-item ledger-amount">0 GULD</a>
-          <a href="javascript:changeCommodity('GG')" id="send" class="dropdown-item ledger-amount">0 GG</a>
-          <a href="javascript:changeCommodity('ISYSD')" id="send" class="dropdown-item ledger-amount">0 ISYSD</a>
-          <a href="javascript:changeCommodity('BTC')" id="send" class="dropdown-item ledger-amount">0 BTC</a>
-          <a href="javascript:changeCommodity('ETH')" id="send" class="dropdown-item ledger-amount">0 ETH</a>
-          <a href="javascript:changeCommodity('DASH')" id="send" class="dropdown-item ledger-amount">0 DASH</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-rocket"></i><!--<i class="fas fa-exchange-alt"></i>--></a>
-        <div class="dropdown-menu dropdown-menu-right">
-          <a href="send.html" id="send-nav" class="dropdown-item">Send</a>
-          <a href="register.html" id="register-nav" class="dropdown-item">Register</a>
-          <a href="grant.html" id="grant-nav" class="dropdown-item">Grant</a>
-          <a href="burn.html" id="burn-nav" class="dropdown-item">Burn</a>
-          <a href="send.html" id="send-nav" class="dropdown-item">Deposit</a>
-          <a href="convert.html" id="convert-nav" class="dropdown-item">Convert</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" id="login-dropdown-toggle"><i class="fas fa-user-astronaut"></i></a>
-        <div class="dropdown-menu dropdown-menu-right login-dropdown" id="login-dropdown">
-          <form class="form-group" onSubmit="javascript:changePerspective(document.getElementById('login-user').value)">
-            <input type="text" class="form-control" id="login-user" placeholder="View as User">
-            <button type="submit">Go</button>
-          </form>
-        </div>
-      </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle ledger-amount active-commodity" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" id="balance">0 GULD</a>
+            <div class="dropdown-menu dropdown-menu-right" id="token-dropdown">
+                <a href="javascript:changeCommodity('GULD')" id="send" class="dropdown-item ledger-amount">0 GULD</a>
+                <!--<a href="javascript:changeCommodity('GG')" id="send" class="dropdown-item ledger-amount">0 GG</a>
+                 <a href="javascript:changeCommodity('ISYSD')" id="send" class="dropdown-item ledger-amount">0 ISYSD</a>-->
+                <!--<a href="javascript:changeCommodity('BTC')" id="send" class="dropdown-item ledger-amount">0 BTC</a>
+                <a href="javascript:changeCommodity('ETH')" id="send" class="dropdown-item ledger-amount">0 ETH</a>
+                <a href="javascript:changeCommodity('DASH')" id="send" class="dropdown-item ledger-amount">0 DASH</a>-->
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-rocket"></i><!--<i class="fas fa-exchange-alt"></i>--></a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <a href="send.html" id="send-nav" class="dropdown-item">Send</a>
+                <a href="register.html" id="register-nav" class="dropdown-item">Register</a>
+                <a href="grant.html" id="grant-nav" class="dropdown-item">Grant</a>
+                <a href="burn.html" id="burn-nav" class="dropdown-item">Burn</a>
+                <a href="deposit.html" id="deposit-nav" class="dropdown-item">Deposit</a>
+                <a href="convert.html" id="convert-nav" class="dropdown-item">Convert</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" id="login-dropdown-toggle"><i class="fas fa-user-astronaut"></i></a>
+            <div class="dropdown-menu dropdown-menu-right login-dropdown" id="login-dropdown">
+                <form class="form-group" onSubmit="javascript:changePerspective(document.getElementById('login-user').value)">
+                    <input type="text" class="form-control" id="login-user" placeholder="View as User">
+                    <button type="submit">Go</button>
+                </form>
+            </div>
+        </li>
     </ul>
 </nav>

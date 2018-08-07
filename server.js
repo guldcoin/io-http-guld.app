@@ -48,4 +48,8 @@ app.get('/footer.html', function(req,res){
  res.sendfile(__dirname + '/footer.html');
 })
 
+app.get('/transaction-submit.html', function(req,res){
+ res.sendfile(__dirname + '/transaction-submit.html');
+})
+
 app.listen(3000, () => console.log('Debug guld app listening on port 3000'))

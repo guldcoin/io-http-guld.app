@@ -1,5 +1,5 @@
 /*
-Template Name: GuldIO
+Template Name: GuldApp
 Description: HTML5 / CSS3 One Page
 Version: 1.0
 Author: guld & Rio Myers
@@ -22,7 +22,7 @@ h1,h2,h3,h4,h5,h6 {
     font-weight: 300;
 }
 
-h3 { margin-bottom: 1rem;}
+h1, h2, h3 { margin-bottom: 1rem;}
 
 .btn-primary {
     color: #000;
@@ -31,8 +31,6 @@ h3 { margin-bottom: 1rem;}
 }
 
 a {color: #D0B460;}
-
-a:hover{text-decoration: none;}
 
 .btn:hover{cursor: pointer;}
 
@@ -61,27 +59,6 @@ span.typed-cursor {
     animation: blink-animation 1s steps(3, start) infinite;
 }
 
-@keyframes blink-animation {
-    to {
-        visibility: hidden;
-    }
-}
-
-.header {
-	height: 100vh;
-	min-height: 100%;
-    width: 100%;
-    z-index: 9;
-    margin-top: -4rem;
-    background: url("../img/bg.png") no-repeat center center fixed;
-    background-color: #000;
-}
-
-.guld{    
-	height: 10rem;
-    margin: 2rem 0 1.4rem;
-}
-
 .navbar-nav {
     font-size: 1.5em;
     color: #D0B460;
@@ -95,86 +72,17 @@ span.typed-cursor {
     width: 5rem;
 }
 
-.header #ico {
-    opacity: 0.9;
-    height: 10rem;
-    display: block;
-    margin: 0 auto;
-}
-
-.header .text {
-    color: #fff;
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-}
-
-.header .description {
-    color: #fff;
-    font-size: 1.4rem;
-    margin: 2rem 0 1.4rem 0;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-}
-
-.header #welcome {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);	
-    text-align: center;
-}
-
-.header #welcome .btn {
-    color: #ffffff;
-    background-color: initial;
-    border-color: #ffffff;
-}
-
-#social {
-    position: absolute;
-    bottom: 0;
+.transact-button {
     width: 100%;
-    text-align: center;
+    margin-bottom: 1em;
 }
 
-#social a {
-    font-size: 1.6rem;
-    width: 3rem;
-    height: 3rem;
-    display: inline-flex;
-    border: 2px #ababab solid;
-    border-radius: 50%;
-    margin: 1rem;
-    padding: 0.6rem;
-    color: #ababab;
-    top: 0;
-    position: relative;
-    animation: social-show 1s;
+#section-error {
+    padding: 0;
 }
 
-#social a:hover,
-#social a:active {
-    color: #d1d1d1;
-    border: 2px #d1d1d1 solid;
-}
-
-@keyframes social-show {
-    from {
-        top: 8rem;
-        opacity: 0;
-    }
-    to {
-        top: 0;
-        opacity: 1;
-    }
-}
-
-#social #telegram {
-    padding: 0.6rem 0.5rem;
-}
-
-#social #facebook {
-    padding: 0.6rem 0.9rem;
+.alert-danger {
+    color: #fff;
 }
 
 a.nav-link {
@@ -216,35 +124,24 @@ section {
     padding: 4rem 0;
 }
 
-.team {
-    text-align: center;
+#section-wallet {
+    padding-bottom: 1em;
 }
 
-.team .thumbnail {
-    padding: 0;
-    background-color: transparent;
-    border: 0;
-    margin-bottom: 2rem;
+#wallet-wrapper {
+    border-bottom: 1px solid white;
 }
 
-.team .thumbnail a:hover {
-    text-decoration: none;
+#section-transaction-submit {
+    padding-top: 1em;
 }
 
-.team .thumbnail .website {
-    display: none;
+#section-transaction-submit button {
+    margin: 0.5em;
 }
 
-.team .thumbnail:hover .website {
-    display: block;
-}
-
-.team .thumbnail .website .title {
-    display: block;
-}
-
-.team .thumbnail:hover .title {
-    display: none;
+.transaction-textarea {
+    width: 100%;
 }
 
 .thumbnail img {
@@ -267,11 +164,6 @@ section {
     color: #888;
     display: block;
     font-weight: normal;
-}
-
-.team .thumbnail h3 a {
-    font-size: 0.6rem;
-    color: #C0C0C0;
 }
 
 .list-group {
@@ -299,117 +191,6 @@ section {
     color: #D0B460;
 }
 
-#section-network img {
-    height: 3rem;
-    margin: 3rem;
-}
-
-#section-contact {
-    text-align: center;
-}
-
-#section-contact form {
-    display: inline-block;
-}
-
-#section-seminar h1 {
-    margin: 0 0 1rem 0;
-}
-
-#section-seminar b {
-    font-weight: 500;
-}
-
-#section-seminar p {
-    margin-bottom: 0.4rem;
-}
-
-#section-seminar #seminar-description {
-    margin: 0 0 1.4rem 0;
-}
-
-#section-seminar .schedule ul {
-    padding: 0 2rem 0 0;
-    border-right: 2px solid #ddd;
-}
-
-#section-seminar .schedule ul li {
-    list-style-type: none;
-    position: relative;
-    margin: 0 auto;
-    padding-top: 1.9rem;
-}
-
-#section-seminar .schedule ul li:first-child {
-    padding-top: 0;
-}
-
-#section-seminar .schedule ul li .mu-single-event {
-    background-color: #fff;
-    box-shadow: 0 0 16px 0 rgba(32, 32, 47, 0.16);
-    position: relative;
-    top: 0;
-    width: 100%;
-    padding: 1rem;
-    text-align: left;
-}
-
-#section-seminar .schedule ul li .mu-single-event::before {
-    content: '';
-    position: absolute;
-    top: 23px;
-    width: 0;
-    height: 0;
-    right: -15px;
-    border-style: solid;
-    border-width: 8px 0 8px 16px;
-    border-color: transparent transparent transparent #fff;
-}
-
-#section-seminar .schedule ul li .mu-event-time::after {
-    content: '';
-    position: absolute;
-    right: -3.6rem;
-    top: 1.2rem;
-    transform: translateX(-50%);
-    height: 24px;
-    width: 24px;
-    border-radius: 50%;
-    background: #ddd;
-}
-
-#section-seminar .schedule ul li .mu-event-time {
-    color: #367bc7;
-    text-align: right;
-    font-weight: 600;
-}
-
-#section-seminar .schedule ul li .topic {
-    text-align: right;
-    font-weight: 400;
-    color: #586171;
-}
-
-#section-seminar .clarify {
-    font-size: 0.8rem;
-}
-
-#section-seminar .details {
-    padding-left: 1.4rem;
-}
-
-#section-seminar .thumbnail img {
-    height: 6rem;
-    width: 6rem;
-    margin-right: 2rem;
-}
-
-#section-seminar .thumbnail .caption {
-    display: inline-block;
-    top: 0.7rem;
-    position: relative;
-}
-
 .footer {
     padding: 2rem 0;
     font-size: 1rem;
@@ -422,77 +203,6 @@ section {
 
 .footer .row {
     margin: 0;
-}
-
-:root {
-    --msg-content-height: 16.75rem;
-    --msg-spacing: 1rem;
-    --msg1-height: 2.5rem;
-    --msg2-height: 2rem;
-    --msg3-height: 2.5rem;
-    --msg4-height: 2rem;
-    --msg5-height: 2rem;
-    --msg6-height: 2.25rem;
-}
-
-.msg {
-    padding: 0.6rem;
-    border-radius: 0.4rem;
-}
-
-.msg-send {
-    position: absolute;
-    animation-iteration-count: 1;
-    animation-duration: 8s;
-    animation-fill-mode: forwards;
-    background-color: #828483;
-    color: white;
-    text-align: left;
-    margin-right: 64px;
-}
-
-.msg-send::after {
-    content: "";
-    background: url("../img/ico_gai.png");
-    width: 44px;
-    height: 44px;
-    display: block;
-    position: absolute;
-    top: 0;
-    right: -3.4rem;
-}
-
-.msg-receive {
-    position: absolute;
-    animation-iteration-count: 1;
-    animation-duration: 8s;
-    background-color: #3b8fab;
-    color: #ffffff;
-    animation-fill-mode: forwards;
-    text-align: right;
-    margin-left: 64px;
-}
-
-.msg-receive::before {
-    content: "";
-    background: url("../img/ico_user.png");
-    width: 44px;
-    height: 44px;
-    display: block;
-    position: absolute;
-    top: 0;
-    left: -3.4rem;
-}
-
-.msg-container {
-    width: 100%;
-    max-width: 28em;
-    position: relative;
-    margin: 0 auto;
-}
-
-.msg-content {
-    height: var(--msg-content-height);
 }
 
 .dropdown-menu {
@@ -513,305 +223,14 @@ section {
     width: 215px;
 }
 
-/*Animation Names*/
-
-#msg1 {
-    animation-name: msg1;
-}
-
-#msg2 {
-    animation-name: msg2;
-}
-
-#msg3 {
-    animation-name: msg3;
-}
-
-#msg4 {
-    animation-name: msg4;
-}
-
-#msg5 {
-    animation-name: msg5;
-}
-
-#msg6 {
-    animation-name: msg6;
-}
-
-/*Key Frames*/
-
-@keyframes msg1 {
-    0% {
-        top: calc(var(--msg-content-height) - var(--msg1-height));
-        left: -4em;
-        transform: scale(0);
-    }
-    5% {
-        top: calc(var(--msg-content-height) - var(--msg1-height));
-        left: 0;
-        transform: scale(1);
-    }
-    12% {
-        top: calc(var(--msg-content-height) - var(--msg1-height));
-    }
-    17% {
-        top: calc(var(--msg-content-height) - var(--msg1-height) - var(--msg-spacing) - var(--msg2-height));
-    }
-    30% {
-        top: calc(var(--msg-content-height) - var(--msg1-height) - var(--msg-spacing) - var(--msg2-height));
-    }
-    35% {
-        top: calc(var(--msg-content-height) - var(--msg1-height) - var(--msg-spacing) - var(--msg2-height) - var(--msg-spacing) - var(--msg3-height));
-    }
-    49% {
-        top: calc(var(--msg-content-height) - var(--msg1-height) - var(--msg-spacing) - var(--msg2-height) - var(--msg-spacing) - var(--msg3-height));
-    }
-    54% {
-        top: calc(var(--msg-content-height) - var(--msg1-height) - var(--msg-spacing) - var(--msg2-height) - var(--msg-spacing) - var(--msg3-height) - var(--msg-spacing) - var(--msg4-height));
-    }
-    70% {
-        top: calc(var(--msg-content-height) - var(--msg1-height) - var(--msg-spacing) - var(--msg2-height) - var(--msg-spacing) - var(--msg3-height) - var(--msg-spacing) - var(--msg4-height));
-    }
-    75% {
-        top: calc(var(--msg-content-height) - var(--msg1-height) - var(--msg-spacing) - var(--msg2-height) - var(--msg-spacing) - var(--msg3-height) - var(--msg-spacing) - var(--msg4-height) - var(--msg-spacing) - var(--msg5-height));
-    }
-    95% {
-        top: calc(var(--msg-content-height) - var(--msg1-height) - var(--msg-spacing) - var(--msg2-height) - var(--msg-spacing) - var(--msg3-height) - var(--msg-spacing) - var(--msg4-height) - var(--msg-spacing) - var(--msg5-height));
-    }
-    100% {
-        top: 0;
-        left: 0;
-    }
-}
-
-@keyframes msg2 {
-    0% {
-        top: calc(var(--msg-content-height) - var(--msg2-height));
-        right: 0;
-        transform: scale(0);
-        opacity: 0;
-    }
-    12% {
-        top: calc(var(--msg-content-height) - var(--msg2-height));
-        right: -4em;
-        transform: scale(0);
-    }
-    17% {
-        top: calc(var(--msg-content-height) - var(--msg2-height));
-        right: 0;
-        transform: scale(1);
-        opacity: 1;
-    }
-    30% {
-        top: calc(var(--msg-content-height) - var(--msg2-height));
-    }
-    35% {
-        top: calc(var(--msg-content-height) - var(--msg2-height) - var(--msg-spacing) - var(--msg3-height));
-    }
-    49% {
-        top: calc(var(--msg-content-height) - var(--msg2-height) - var(--msg-spacing) - var(--msg3-height));
-    }
-    54% {
-        top: calc(var(--msg-content-height) - var(--msg2-height) - var(--msg-spacing) - var(--msg3-height) - var(--msg-spacing) - var(--msg4-height));
-    }
-    70% {
-        top: calc(var(--msg-content-height) - var(--msg2-height) - var(--msg-spacing) - var(--msg3-height) - var(--msg-spacing) - var(--msg4-height));
-    }
-    75% {
-        top: calc(var(--msg-content-height) - var(--msg2-height) - var(--msg-spacing) - var(--msg3-height) - var(--msg-spacing) - var(--msg4-height) - var(--msg-spacing) - var(--msg5-height));
-        right: 0;
-    }
-    95% {
-        top: calc(var(--msg-content-height) - var(--msg2-height) - var(--msg-spacing) - var(--msg3-height) - var(--msg-spacing) - var(--msg4-height) - var(--msg-spacing) - var(--msg5-height));
-    }
-    100% {
-        top: calc(var(--msg-content-height) - var(--msg2-height) - var(--msg-spacing) - var(--msg3-height) - var(--msg-spacing) - var(--msg4-height) - var(--msg-spacing) - var(--msg5-height) - var(--msg-spacing) - var(--msg6-height));
-        right: 0;
-    }
-}
-
-@keyframes msg3 {
-    0% {
-        top: calc(var(--msg-content-height) - var(--msg3-height));
-        left: -4em;
-        opacity: 0;
-        transform: scale(0);
-    }
-    30% {
-        top: calc(var(--msg-content-height) - var(--msg3-height));
-        opacity: 0;
-        transform: scale(0);
-    }
-    35% {
-        top: calc(var(--msg-content-height) - var(--msg3-height));
-        left: 0;
-        transform: scale(1);
-        opacity: 1;
-    }
-    49% {
-        top: calc(var(--msg-content-height) - var(--msg3-height));
-    }
-    54% {
-        top: calc(var(--msg-content-height) - var(--msg3-height) - var(--msg-spacing) - var(--msg4-height));
-    }
-    70% {
-        top: calc(var(--msg-content-height) - var(--msg3-height) - var(--msg-spacing) - var(--msg4-height));
-    }
-    75% {
-        top: calc(var(--msg-content-height) - var(--msg3-height) - var(--msg-spacing) - var(--msg4-height) - var(--msg-spacing) - var(--msg5-height));
-        left: 0;
-    }
-    95% {
-        top: calc(var(--msg-content-height) - var(--msg3-height) - var(--msg-spacing) - var(--msg4-height) - var(--msg-spacing) - var(--msg5-height));
-    }
-    100% {
-        top: calc(var(--msg-content-height) - var(--msg3-height) - var(--msg-spacing) - var(--msg4-height) - var(--msg-spacing) - var(--msg5-height) - var(--msg-spacing) - var(--msg6-height));
-        left: 0;
-    }
-}
-
-@keyframes msg4 {
-    0% {
-        top: calc(var(--msg-content-height) - var(--msg4-height));
-        right: -4em;
-        opacity: 0;
-        transform: scale(0);
-    }
-    49% {
-        top: calc(var(--msg-content-height) - var(--msg4-height));
-        right: -4em;
-        opacity: 0;
-        transform: scale(0);
-    }
-    54% {
-        top: calc(var(--msg-content-height) - var(--msg4-height));
-        right: 0;
-        transform: scale(1);
-        opacity: 1;
-    }
-    70% {
-        top: calc(var(--msg-content-height) - var(--msg4-height));
-    }
-    75% {
-        top: calc(var(--msg-content-height) - var(--msg4-height) - var(--msg-spacing) - var(--msg5-height));
-        right: 0;
-    }
-    95% {
-        top: calc(var(--msg-content-height) - var(--msg4-height) - var(--msg-spacing) - var(--msg5-height));
-    }
-    100% {
-        top: calc(var(--msg-content-height) - var(--msg4-height) - var(--msg-spacing) - var(--msg5-height) - var(--msg-spacing) - var(--msg6-height));
-        right: 0;
-    }
-}
-
-@keyframes msg5 {
-    0% {
-        top: calc(var(--msg-content-height) - var(--msg5-height));
-        left: -4em;
-        opacity: 0;
-        transform: scale(0);
-    }
-    70% {
-        top: calc(var(--msg-content-height) - var(--msg5-height));
-        left: -4em;
-        opacity: 0;
-        transform: scale(0);
-    }
-    75% {
-        top: calc(var(--msg-content-height) - var(--msg5-height));
-        left: 0;
-        transform: scale(1);
-        opacity: 1;
-    }
-    95% {
-        top: calc(var(--msg-content-height) - var(--msg5-height));
-    }
-    100% {
-        top: calc(var(--msg-content-height) - var(--msg5-height) - var(--msg-spacing) - var(--msg6-height));
-        left: 0;
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-@keyframes msg6 {
-    0% {
-        top: calc(var(--msg-content-height) - var(--msg6-height));
-        right: -4em;
-        opacity: 0;
-        transform: scale(0);
-    }
-    95% {
-        top: calc(var(--msg-content-height) - var(--msg6-height));
-        right: 0;
-        opacity: 0;
-        transform: scale(0);
-    }
-    100% {
-        top: calc(var(--msg-content-height) - var(--msg6-height));
-        right: 0em;
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-@media screen and (max-width: 48em) {
-	#section-network img {margin: 2rem;}
-    #read_seminar {
-        margin-top: 3rem;
-    }
-    .seminar-countdown .time {
-        height: 7rem;
-        width: 5rem;
-    }
-    .seminar-countdown .count {
-        font-size: 2.4rem;
-        line-height: 7rem
-    }
-    .seminar-countdown .label {
-        font-size: 0.8em;
-        top: 7.4rem;
-    }
-}
-
 @media screen and (max-width: 28rem) {
-    .header .text {
-        font-size: 2rem;
-    }
-    .header .description {
-        font-size: 1rem;
-    }
     .section-title h1 {
         font-size: 2rem;
         margin: 0 0 2rem 0;
     }
-    #team {
-        margin-bottom: -3rem;
-    }
     .badge {
         display: none !important;
     }
-    #section-network img {
-        margin: 0 2rem 3rem;
-        width: 8rem;
-        height: auto;
-    }
-}
-
-@media screen and (max-width: 23.4rem) {
-    .seminar-countdown .time {
-        height: 70px;
-        width: 48px;
-    }
-    .seminar-countdown .count {
-        font-size: 1.5em;
-        line-height: 70px;
-    }
-    .seminar-countdown .label {
-        font-size: 0.8em;
-        top: 72px;
 }
 
 #loading-div {
@@ -848,10 +267,4 @@ section {
     height: 120px;
     animation: spin 2s linear infinite;
 }
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
 

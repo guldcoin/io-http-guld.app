@@ -1,16 +1,29 @@
+const NAMEWARN = 'Guld name is not available or valid, choose another.'
+
 document.addEventListener('DOMContentLoaded', async function () {
   await loadHTMLComponent('/header.html', 'header-wrapper')
   await loadHTMLComponent('/footer.html', 'footer')
   await loadPerspective()
+  window.commodity = qsLocalWindow.getValue('commodity', undefined, 'GULD')
+  await changeCommodity(commodity)
+  await showTransactionTypes()
 })
 
+async function getPerspective (pers) {
+  pers = pers || qsLocalWindow.getValue('perspective', undefined, 'guld')
+  return fetch(`dotfiles/${pers}/.gitconfig`).then(async response => {
+    if (response.ok) {
+      var cfgtxt = await response.text()
+      return gitConfigIni.decode(cfgtxt)
+    }
+  }).catch(e => undefined)
+}
+
 async function loadPerspective (pers) {
-  window.perspective = pers || qsLocalWindow.getValue('perspective', undefined, 'guld')
-  var response = await fetch(`dotfiles/${perspective}/.gitconfig`)
-  if (response.ok) {
+  var persp = await getPerspective(pers)
+  if (persp) {
     errorDisplay.unsetError(`Could not find perspective`)
-    var cfgtxt = await response.text()
-    window.observer = gitConfigIni.decode(cfgtxt)
+    window.observer = persp
     await loadGuldVals()
     await showBalances()
   } else {
@@ -127,7 +140,6 @@ async function changePerspective (per) {
   $('#login-dropdown-toggle').dropdown("toggle");
 }
 
-
 async function changeCommodity (comm) {
   delete window.commodity
   comm = comm.toUpperCase()
@@ -139,6 +151,7 @@ async function changeCommodity (comm) {
     else acs[a].innerText = `0 ${comm}`
   }
   await showBalances(perspective, commodity)
+  await showTransactionTypes()
 }
 
 async function getCommodityPrice (base='GULD', quote='USD', oname) {
@@ -172,29 +185,37 @@ async function getCommodityPrice (base='GULD', quote='USD', oname) {
   return window.prices[quote][base]
 }
 
-function showTransactionTypes (page, comm) {
-  page = page || detectPage()
-  comm = comm || detectCommodity()
+function showTransactionTypes () {
+  window.commodity = qsLocalWindow.getValue('commodity', undefined, 'GULD')
+  var alltypes = [
+    'send',
+    'register',
+    'grant',
+    'burn',
+    'deposit',
+    'convert'
+  ]
+
   ttypes = {
     'GULD': ['send', 'register', 'grant'],
     'GG': ['send', 'burn'],
     'BTC': ['deposit', 'convert']
   }
-  if (ttypes[comm]) {
-    ttypes[comm].forEach(ttype => {
-      document.getElementById(ttype).style.display = 'inline-block'
-    })
-  }
-}
-
-function setDisplay (t) {
-  tab = t
-  Object.keys(DIVS[tab]).forEach(div => {
-    var el = document.getElementById(div)
-    if (el) {
-      if (DIVS[tab][div]) el.style.display = 'block'
-      else if (DIVS[tab][div] === false) el.style.display = 'none'
-      else if (div === 'err-warn') el.innerHTML = DIVS[tab][div]
+  alltypes.forEach(ttype => {
+    if (ttypes[commodity] && ttypes[commodity].indexOf(ttype) >= 0) {
+      document.getElementById(`${ttype}-nav`).style.display = 'inline-block'
+    } else {
+      document.getElementById(`${ttype}-nav`).style.display = 'none'
     }
   })
 }
+
+async function validatePass () {
+  var errmess = 'Password invalid or does not match. '
+  // TODO get these elements
+  var same = (passin.value === passrin.value)
+  if (same !== true) errorDisplay.setError(errmess)
+  else errorDisplay.unsetError(errmess)
+  return same
+}
+
