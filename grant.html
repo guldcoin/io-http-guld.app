@@ -1,54 +1,36 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Style CSS -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/fa-svg-with-js.min.css" rel="stylesheet">
-  <link href="css/style.css" rel="stylesheet">
-  <!-- JavaScript libs -->
-  <script src="js/jquery.min.js" type="text/javascript"></script>
-  <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
-  <script src="js/fontawesome-all.min.js" type="text/javascript"></script>
-  <script src="js/qrcode.min.js" type="text/javascript"></script>
-  <script src="js/openpgp.min.js" type="text/javascript"></script>
-  <script src="js/decimal.min.js" type="text/javascript"></script>
-  <script src="js/qs-local-window.js" type="text/javascript"></script>
-  <script src="js/error-display.js" type="text/javascript"></script>
-  <script src="js/load-html-component.js" type="text/javascript"></script>
-  <script src="js/ini.min.js" type="text/javascript"></script>
-  <script src="js/ledger-types.min.js" type="text/javascript"></script>
-  <script src="js/index.js" type="text/javascript"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Style CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/fa-svg-with-js.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar" data-offset="70">
-  <div class="container-fluid">
-    <div id="header-wrapper">
-      <!--
-        Populates the header in the UI. Values in balance-div are populated by the
-        loadWallet() function defined in js/main.js.
-
-        This list's styling is controlled by the #currency-tab entries in style.css.
-      -->
-    </div>
-    <!--
-      The err-div division is ...
-    -->
-    <div id="err-div" class="row"></div>
-    <!--err-div-->
-    <section id="section-wallet" class="section-wrapper mf">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-6 text-center">
-              <!--
-                Populates the grant section of the UI.
-
-                Don't confuse *granting* and *sending*. When you grant, you are *creating*.
-
-                This list's styling is controlled by the #currency-tab entries in style.css.
-              -->
+    <div class="container-fluid">
+        <div id="header-wrapper">
+        </div>
+        <section id="section-error">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6 text-center">
+                        <div id="err-div" class="alert alert-dismissible alert-danger d-none"></div>
+                        <!--err-div-->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="section-wallet" class="section-wrapper mf">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8 text-center" id="wallet-wrapper">
+                        <h1>Grant</h1>
               <form id="grant-form">
                 <div class="form-group row">
                   <label for="receiver" class="col-sm-5 col-form-label">Contributor</label>
@@ -60,41 +42,37 @@
                   <div class="col-sm-7">
                     <input type="number" step=".00000001" class="form-control" id="guld-spend-amount" placeholder="3.5" required=""> </div>
                 </div>
-                <div class="modal-footer row">
-                  <div class="col-sm-12">
-                    <button class="btn btn-primary" type="submit">grant</button>
-                  </div>
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <button class="btn btn-primary transact-button" type="submit">generate</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-2"></div>
                 </div>
-              </form>
-                </div>
-                <div class="col-md-3"></div>
             </div>
-        </div>
-    </section>
-  </div>
-  <a href="#" id="logout" style="display: none;">Logout</a>
-  <a href="index.html?view=options" id="settings" style="display: none;">
-    <img src="img/settings.svg">
-  </a>
-  <footer id="footer" class="footer">
-    <!--
-      Populates the header in the UI. Values in balance-div are populated by the
-      loadWallet() function defined in js/main.js.
+        </section>
+        <section id="section-transaction-submit" class="section-wrapper d-none">
 
-      This list's styling is controlled by the #currency-tab entries in style.css.
-    -->
-  </footer>
-  <!-- .footer -->
-
-  <!--
-    The loading-div gets replaced when ...
-  <div id="loading-div">
-    <div id="loading-message-div">
-      <h1>Processing</h1>
-      <div class="loader"></div>
-      <h3 id="loader-wait-msg">Please wait</h3>
+        </section>
     </div>
-  </div>  -->
+    <footer id="footer" class="footer"></footer>
+    <!-- JavaScript libs -->
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <script src="js/fontawesome-all.min.js" type="text/javascript"></script>
+    <script src="js/qrcode.min.js" type="text/javascript"></script>
+    <script src="js/openpgp.min.js" type="text/javascript"></script>
+    <script src="js/decimal.min.js" type="text/javascript"></script>
+    <script src="js/qs-local-window.js" type="text/javascript"></script>
+    <script src="js/error-display.js" type="text/javascript"></script>
+    <script src="js/load-html-component.js" type="text/javascript"></script>
+    <script src="js/ini.min.js" type="text/javascript"></script>
+    <script src="js/ledger-types.min.js" type="text/javascript"></script>
+    <script src="js/guld-ledger-transfer.min.js" type="text/javascript"></script>
+    <script src="js/index.js" type="text/javascript"></script>
+    <script src="js/transaction.js" type="text/javascript"></script>
 </body>
 
 </html>

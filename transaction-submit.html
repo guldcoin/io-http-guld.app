@@ -8,11 +8,11 @@
                         <h4 class="text-center">Raw Transaction</h4>
                     </div>
                     <div>
-                        <textarea class="transaction-textarea" rows="5" id="raw-transaction"></textarea>
+                        <textarea class="transaction-textarea" rows="7" id="raw-transaction"></textarea>
                     </div>
                     <div>
-                        <button class="btn btn-primary transact-area-button" id="copy-transaction">copy</button>
-                        <button class="btn btn-primary transact-area-button float-right" id="download-transaction">download</button>
+                        <button class="btn btn-primary transact-area-button" id="copy-transaction" onClick="var el = document.getElementById('raw-transaction'); el.focus(); el.select(); document.execCommand('copy')">copy</button>
+                        <a id="download-transaction-link"><button class="btn btn-primary transact-area-button float-right" id="download-transaction">download</button></a>
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -20,7 +20,7 @@
                         <h4 class="text-center">Signed Transaction</h4>
                     </div>
                     <div>
-                        <textarea class="transaction-textarea" rows="5" id="signed-transaction"></textarea>
+                        <textarea class="transaction-textarea" rows="7" id="signed-transaction"></textarea>
                     </div>
                     <div>
                         <button class="btn btn-primary transact-area-button float-right" id="signed-transaction">submit</button>

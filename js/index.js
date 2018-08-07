@@ -152,6 +152,7 @@ async function changeCommodity (comm) {
   }
   await showBalances(perspective, commodity)
   await showTransactionTypes()
+  return false
 }
 
 async function getCommodityPrice (base='GULD', quote='USD', oname) {
@@ -197,7 +198,7 @@ function showTransactionTypes () {
   ]
 
   ttypes = {
-    'GULD': ['send', 'register', 'grant'],
+    'GULD': ['send'], // , 'register', 'grant'
     'GG': ['send', 'burn'],
     'BTC': ['deposit', 'convert']
   }

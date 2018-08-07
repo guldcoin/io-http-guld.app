@@ -8,35 +8,12 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/fa-svg-with-js.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <!-- JavaScript libs -->
-    <script src="js/jquery.min.js" type="text/javascript"></script>
-    <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
-    <script src="js/fontawesome-all.min.js" type="text/javascript"></script>
-    <script src="js/qrcode.min.js" type="text/javascript"></script>
-    <script src="js/openpgp.min.js" type="text/javascript"></script>
-    <script src="js/decimal.min.js" type="text/javascript"></script>
-    <script src="js/qs-local-window.js" type="text/javascript"></script>
-    <script src="js/error-display.js" type="text/javascript"></script>
-    <script src="js/load-html-component.js" type="text/javascript"></script>
-    <script src="js/ini.min.js" type="text/javascript"></script>
-    <script src="js/ledger-types.min.js" type="text/javascript"></script>
-    <script src="js/index.js" type="text/javascript"></script>
-    <script src="js/transaction.js" type="text/javascript"></script>
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar" data-offset="70">
     <div class="container-fluid">
         <div id="header-wrapper">
-            <!--
-        Populates the header in the UI. Values in balance-div are populated by the
-        loadWallet() function defined in js/main.js.
-
-        This list's styling is controlled by the #currency-tab entries in style.css.
-      -->
         </div>
-        <!--
-      The err-div division is ...
-    -->
         <section id="section-error">
             <div class="container">
                 <div class="row">
@@ -54,14 +31,14 @@
                     <div class="col-md-2"></div>
                     <div class="col-md-8 text-center" id="wallet-wrapper">
                         <h1>Send</h1>
-                        <form id="guld-transfer-form">
+                        <form id="guld-transfer-form" onsubmit="return showRawTransaction('transfer')">
                             <div class="form-group row">
-                                <label for="sender" class="col-sm-5 col-form-label">Sender</label>
+                                <label for="sender" class="col-sm-5 col-form-label">From</label>
                                 <div class="col-sm-7">
                                     <input type="text" class="form-control" id="guld-transaction-sender" placeholder="Sender" required="" onblur="javascript:validateSender()" /> </div>
                             </div>
                             <div class="form-group row">
-                                <label for="recipient" class="col-sm-5 col-form-label">Recipient</label>
+                                <label for="recipient" class="col-sm-5 col-form-label">To</label>
                                 <div class="col-sm-7">
                                     <input type="text" class="form-control" id="guld-transaction-recipient" placeholder="Recipient" required="" onblur="javascript:validateRecipient()"> </div>
                             </div>
@@ -73,7 +50,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-12">
-                                    <button class="btn btn-primary transact-button" type="submit">send</button>
+                                    <button class="btn btn-primary transact-button" type="submit">generate</button>
                                 </div>
                             </div>
                         </form>
@@ -82,12 +59,26 @@
                 </div>
             </div>
         </section>
-        <section id="section-transaction-submit" class="section-wrapper">
+        <section id="section-transaction-submit" class="section-wrapper d-none">
 
         </section>
     </div>
     <footer id="footer" class="footer"></footer>
-    <!-- .footer -->
+    <!-- JavaScript libs -->
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <script src="js/fontawesome-all.min.js" type="text/javascript"></script>
+    <script src="js/qrcode.min.js" type="text/javascript"></script>
+    <script src="js/openpgp.min.js" type="text/javascript"></script>
+    <script src="js/decimal.min.js" type="text/javascript"></script>
+    <script src="js/qs-local-window.js" type="text/javascript"></script>
+    <script src="js/error-display.js" type="text/javascript"></script>
+    <script src="js/load-html-component.js" type="text/javascript"></script>
+    <script src="js/ini.min.js" type="text/javascript"></script>
+    <script src="js/ledger-types.min.js" type="text/javascript"></script>
+    <script src="js/guld-ledger-transfer.min.js" type="text/javascript"></script>
+    <script src="js/index.js" type="text/javascript"></script>
+    <script src="js/transaction.js" type="text/javascript"></script>
 </body>
 
 </html>
