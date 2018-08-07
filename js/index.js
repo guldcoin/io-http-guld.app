@@ -1,5 +1,6 @@
 const NAMEWARN = 'Guld name is not available or valid, choose another.'
 const ATYPES = new Array('Assets', 'Liabilities', 'Equity', 'Expenses', 'Income')
+let keyring = new openpgp.Keyring()
 
 document.addEventListener('DOMContentLoaded', async function () {
   await loadHTMLComponent('/header.html', 'header-wrapper')
@@ -231,6 +232,21 @@ async function showMemberDetails (gname) {
   if (memDetails && cdiv) memDetails.innerHTML = `${memDetails.innerHTML}\n${cdiv}`
 }
 
+async function getPGPKey (gname, fpr) {
+  gname = gname || observer.user.username
+  fpr = fpr || observer.user.signingkey
+  return keyringPGP.getPublicKey(fpr).then(pubkey => {
+    return pubkey
+  }).catch(async e => {
+    var response = await fetch(`keys/pgp/${gname}/${fpr}.asc`)
+    if (response.ok) {
+      pubkey = await response.text()
+      await keyringPGP.importPublicKey(pubkey)
+    } else {
+      throw new Error(`Could not reach the API`)
+    }
+  })
+}
 
 async function getEquityCache () {
   if (!window.hasOwnProperty('equity_cache')) {

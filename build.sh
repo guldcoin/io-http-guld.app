@@ -9,6 +9,7 @@ rm js/error-display.js; cp -f ~/tech/js/node_modules/error-display/error-display
 rm js/load-html-component.js; cp -f ~/tech/js/node_modules/load-html-component/load-html-component.js js/
 rm js/ini.min.js; cp -f ~/tech/js/node_modules/git-config-ini/ini.min.js js/
 rm js/ledger-types.min.js; cp -f ~/tech/js/node_modules/ledger-types/ledger-types.min.js js/
+rm js/keyring-pgp.min.js; cp -f ~/tech/js/node_modules/keyring-pgp/keyring-pgp.min.js js/
 rm js/guld-ledger-transfer.min.js; cp -f ~/tech/js/node_modules/guld-ledger-transfer/guld-ledger-transfer.min.js js/
 rm js/guld-ledger-register.min.js; cp -f ~/tech/js/node_modules/guld-ledger-register/guld-ledger-register.min.js js/
 rm js/guld-ledger-grant.min.js; cp -f ~/tech/js/node_modules/guld-ledger-grant/guld-ledger-grant.min.js js/

@@ -51,6 +51,27 @@ async function validateSpendAmount () {
   }
 }
 
+async function validateSubmitTransaction () {
+  var errmess = 'Invalid transaction submitted. '
+  var sigDiv = document.getElementById('signed-transaction')
+  var sender = document.getElementById('guld-transaction-sender').value || perspective
+  return await getPGPKey(sender).then(pubkey => {
+    console.log(pubkey)
+    if (amount.greaterThan(bal)) {
+      errorDisplay.setError(errmess)
+      return false
+    } else {
+      errorDisplay.unsetError(errmess)
+      return true
+    }
+  }).catch(e => {
+    console.error(e)
+    errorDisplay.setError(errmess)
+    return false
+  })
+  
+}
+
 function showRawTransaction (ttype) {
   var section = document.getElementById('section-transaction-submit')
   if (section.className.indexOf('d-none') > -1) section.className = section.className.replace(/d-none/g, '')
