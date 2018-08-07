@@ -181,10 +181,10 @@ async function showMemberDetails (gname) {
       cdiv = `${cdiv}\n<tr><th class="color-guld">Website</th><td class="color-guld"><a href="${url}" target="_blank">${observer.user.website}</a></td></tr>`
     }
     if (observer.user.email) {
-      cdiv = `${cdiv}\n<tr><th class="color-guld">Email</th><td class="color-guld">${observer.user.email}</td></tr>`
+      cdiv = `${cdiv}\n<tr><th class="color-guld">Email</th><td class="color-guld"><a href="mailto:${observer.user.email}">${observer.user.email}</td></tr>`
     }
     if (observer.user.signingkey) {
-      cdiv = `${cdiv}\n<tr><th class="color-guld">PGP Key</th><td class="color-guld">${observer.user.signingkey}</td></tr>`
+      cdiv = `${cdiv}\n<tr><th class="color-guld">PGP Key</th><td class="color-guld"><a href="/keys/pgp/${observer.user.username}/${observer.user.signingkey}.asc" download>${observer.user.signingkey}</td></tr>`
     }
     if (observer.aliases) {
       cdiv = `${cdiv}\n<tr><th class="color-guld">Aliases</th><td class="color-guld"><ul class="list-inline">`
