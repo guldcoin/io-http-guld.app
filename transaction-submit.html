@@ -10,9 +10,9 @@
                     <div>
                         <textarea class="transaction-textarea" rows="7" id="raw-transaction"></textarea>
                     </div>
-                    <div>
-                        <button class="btn btn-primary transact-area-button" id="copy-transaction" onClick="var el = document.getElementById('raw-transaction'); el.focus(); el.select(); document.execCommand('copy')">copy</button>
-                        <a id="download-transaction-link"><button class="btn btn-primary transact-area-button float-right" id="download-transaction">download</button></a>
+                    <div class="text-right">
+                        <a id="copy-transaction" onClick="var el = document.getElementById('raw-transaction'); el.focus(); el.select(); document.execCommand('copy')"><i class="fas fa-copy fa-2x"></i></a>
+                        <a id="download-transaction-link"><i class="fas fa-file-download fa-2x"></i></a>
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -22,8 +22,8 @@
                     <div>
                         <textarea class="transaction-textarea" rows="7" id="signed-transaction"></textarea>
                     </div>
-                    <div>
-                        <button class="btn btn-primary transact-area-button float-right" id="signed-transaction">submit</button>
+                    <div class="text-right">
+                        <a id="upload-transaction-link"><i class="fas fa-cloud-upload-alt fa-2x"></i></a>
                     </div>
                 </div>
             </div>

@@ -64,7 +64,7 @@ async function showBalances (gname, comm="GULD") {
         if (bal) {
           acs[a].innerText = `${bal.value.toNumber().toLocaleString()}`
           acs[a].commodity = c
-          if (acs[a].id === "balance") acs[a].innerText = `${acs[a].innerText} ${c}`
+          if (acs[a].id === "balance" || (acs[a].className && acs[a].className.indexOf('dropdown-item') > -1)) acs[a].innerText = `${acs[a].innerText} ${c}`
         }
       }
     }
@@ -222,11 +222,12 @@ async function changeCommodity (comm) {
   window.commodity = qsLocalWindow.getValue('commodity', `?commodity=${comm}`, comm)
   var acs = document.getElementsByClassName('active-commodity')
   for (var a in acs) {
-    if (balances_cache[observer.user.username].hasOwnProperty(`${observer.user.username}:Assets`) && balances_cache[observer.user.username][`${observer.user.username}:Assets`].hasOwnProperty(comm)) {
-      var bal = balances_cache[observer.user.username][`${observer.user.username}:Assets`][comm]
-      if (price) acs[a].innerText = `${price} ${comm}`
-      else acs[a].innerText = `0 ${comm}`
-    } else acs[a].innerText = `0 ${comm}`
+    if (balances_cache[observer.user.username].hasOwnProperty(`${observer.user.username}:Assets`) && balances_cache[observer.user.username][`${observer.user.username}:Assets`].hasOwnProperty(commodity)) {
+      var bal = balances_cache[observer.user.username][`${observer.user.username}:Assets`][commodity].value.toNumber().toLocaleString()
+      if (bal) acs[a].textContent = `${bal} ${commodity}`
+      else acs[a].textContent = `0 ${commodity}`
+    } else acs[a].textContent = `0 ${commodity}`
+    acs[a].commodity = commodity
   }
   await showBalances(perspective, commodity)
   await showTransactionTypes()
