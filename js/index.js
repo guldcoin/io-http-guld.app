@@ -226,9 +226,11 @@ async function changeCommodity (comm) {
   window.commodity = qsLocalWindow.getValue('commodity', `?commodity=${comm}`, comm)
   var acs = document.getElementsByClassName('active-commodity')
   for (var a in acs) {
-    var price = balances_cache[observer.user.username][`${observer.user.username}:Assets`][comm]
-    if (price) acs[a].innerText = `${price} ${comm}`
-    else acs[a].innerText = `0 ${comm}`
+    if (balances_cache[observer.user.username].hasOwnProperty(`${observer.user.username}:Assets`) && balances_cache[observer.user.username][`${observer.user.username}:Assets`].hasOwnProperty(comm)) {
+      var bal = balances_cache[observer.user.username][`${observer.user.username}:Assets`][comm]
+      if (price) acs[a].innerText = `${price} ${comm}`
+      else acs[a].innerText = `0 ${comm}`
+    } else acs[a].innerText = `0 ${comm}`
   }
   await showBalances(perspective, commodity)
   await showTransactionTypes()
