@@ -171,6 +171,7 @@ section {
 
 .dash-card {
     max-width: 80%
+    margin: 0 auto;
 }
 
 .thumbnail img {
