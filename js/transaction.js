@@ -55,7 +55,7 @@ async function validateSubmitTransaction () {
   var errmess = 'Invalid transaction submitted. '
   var sigDiv = document.getElementById('signed-transaction')
   var sender = document.getElementById('guld-transaction-sender').value || perspective
-  return await getPGPKey(sender).then(await pubkey => {
+  return await getPGPKey(sender).then(async pubkey => {
     console.log(pubkey)
     var verified = await keyringPGP.verify(sigDiv.value, undefined, observer.user.signingkey)
     console.log(verified)
