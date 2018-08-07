@@ -1,9 +1,9 @@
 /*
-Template Name: GuldApp
+Template Name: GuldIO
 Description: HTML5 / CSS3 One Page
 Version: 1.0
-Author: guld & Rio Myers
-Website: https://chrissmejia.com & https://riomyers.com
+Author: Guld & Rio Myers
+Website: https://riomyers.com
 */
 body {
     font-family: 'Roboto', sans-serif;
@@ -11,7 +11,7 @@ body {
     background: #000000;
     background-image: url("../img/background.png") no-repeat center center fixed;
     background-size: cover;
-    height: 100vh;
+    height: 95vh;
     min-height: 100%;
     color: #fff;
     margin: 0;
@@ -36,8 +36,6 @@ a {color: #D0B460;}
 
 .btn:focus{box-shadow: none;}
 
-.mf{margin-top: 7px;}
-
 pre {
 	background-color: #f7f7f7;
 	box-shadow: 0 2px 4px rgba(0,0,0,.15),0 0 3px rgba(0,0,0,.15);
@@ -48,7 +46,7 @@ pre {
 	line-height: 1.8em;
 }
 
-code{
+code {
 	background-color: #f7f7f7;
 	padding: .2em;	
 }
@@ -69,6 +67,8 @@ span.typed-cursor {
 }
 
 .navbar #logo {
+	position: absolute;
+	top: 1rem;
     width: 5rem;
 }
 
@@ -82,8 +82,23 @@ span.typed-cursor {
     padding: 0;
 }
 
+#err-div {
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%);
+	text-align: center;
+}
+
 .alert-danger {
     color: #fff;
+}
+
+.alert-dismissible {
+	padding: .73rem;
+}
+
+.navbar-nav .dropdown-menu {
+	position: absolute;
 }
 
 a.nav-link {
@@ -130,6 +145,7 @@ section {
 }
 
 #wallet-wrapper {
+	margin-top: 1rem;
     border-bottom: 0px solid white;
 }
 
