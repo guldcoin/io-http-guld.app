@@ -32,12 +32,16 @@ async function validateRecipient () {
 async function validateSpendAmount () {
   var errmess = 'Invalid amount. '
   var amtDiv = document.getElementById('guld-spend-amount')
+  var sender = document.getElementById('guld-transaction-sender').value || perspective
   try {
     var amount = new Decimal(amtDiv.value)
   } catch (e) {
     return false
   }
-  var bal = balances_cache[perspective][`${perspective}:Assets`][commodity].value
+  var bal = new Decimal(0)
+  window.balances_cache = window.balances_cache || {}
+  balances_cache = await getBalances(sender, commodity)
+  if (balances_cache[sender] && balances_cache[sender][`${sender}:Assets`] && balances_cache[sender][`${sender}:Assets`][commodity]) bal = balances_cache[sender][`${sender}:Assets`][commodity].value
   if (amount.greaterThan(bal)) {
     errorDisplay.setError(errmess)
     return false
