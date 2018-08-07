@@ -1,4 +1,5 @@
 const NAMEWARN = 'Guld name is not available or valid, choose another.'
+const ATYPES = new Array('Assets', 'Liabilities', 'Equity', 'Expenses', 'Income')
 
 document.addEventListener('DOMContentLoaded', async function () {
   await loadHTMLComponent('/header.html', 'header-wrapper')
@@ -58,9 +59,13 @@ async function showBalances (gname, comm="GULD") {
     var acs = document.getElementsByClassName('ledger-amount')
     for (var a in acs) {
       if (acs[a].innerText) {
-        var c = acs[a].innerText.split(' ').slice(-1)
+        var c = acs[a].commodity || acs[a].innerText.split(' ').slice(-1)
         var bal = balances_cache[observer.user.username][`${observer.user.username}:Assets`][c]
-        if (bal) acs[a].innerText = `${bal.value.toNumber().toLocaleString()} ${c}`
+        if (bal) {
+          acs[a].innerText = `${bal.value.toNumber().toLocaleString()}`
+          acs[a].commodity = c
+          if (acs[a].id === "balance") acs[a].innerText = `${acs[a].innerText} ${c}`
+        }
       }
     }
   } else {
@@ -69,30 +74,105 @@ async function showBalances (gname, comm="GULD") {
   if (showBalanceDetails) await showBalanceDetails(gname)
 }
 
+async function getUSDValue (gname, category, comm) {
+  var assets = balances_cache[gname][`${gname}:${category}`][comm]
+  var price = await getCommodityPrice(comm, 'USD', gname)
+  var val = new Decimal(0)
+  console.log(price)
+  console.log(assets)
+  if (price && assets && price.value && assets.value) val = price.value.mul(assets.value).mul(new Decimal(100)).round(2).div(new Decimal(100))
+  return val
+}
+
+async function getBalanceMatrix (gname) {
+  var matrix = {}
+  for (var typ in ATYPES) {
+    var t = ATYPES[typ]
+    if (balances_cache[gname].hasOwnProperty(`${gname}:${t}`)) {
+      await Promise.all(balances_cache[gname][`${gname}:${t}`].commodities().map(async c => {
+        console.log(c)
+        var assets = balances_cache[gname][`${gname}:${t}`][c]
+        var val = await getUSDValue(gname, t, c)
+        matrix[c] = matrix[c] || {}
+        matrix[c][t] = matrix[c][t] || {}
+        matrix[c][t].value = val
+        matrix[c][t].balance = assets
+      }))
+    }
+  }
+  return matrix
+}
+
 async function showBalanceDetails (gname) {
   gname = gname || observer.user.username
   window.balances_cache = await getBalances(gname)
   var balDetails = document.getElementById('balance-details')
   if (balances_cache.hasOwnProperty(gname) && balDetails) {
     balDetails.innerHTML = ""
-    await Promise.all(new Array('Assets', 'Liabilities', 'Equity', 'Expenses', 'Income').map(async cat => {
-      var cdiv
-      if (balances_cache[gname].hasOwnProperty(`${gname}:${cat}`)) {
-        cdiv = `<div id="balance-detail-${cat}" class="card balance-card"><div class="card-header">${cat}</div>`
-        await Promise.all(balances_cache[gname][`${gname}:${cat}`].commodities().map(async c => {
-          var assets = balances_cache[gname][`${gname}:${cat}`][c]
-          var price = await getCommodityPrice(c, 'USD', gname)
-          var val = new Decimal(0)
-          if (price.value && assets.value) val = price.value.mul(assets.value).mul(new Decimal(100)).round(2).div(new Decimal(100))
-          cdiv = `${cdiv}\n<div id="balance-detail-${cat}-${c}" class="card-body ledger-amount" title="$${val.toNumber().toLocaleString()}">${assets.value.toNumber().toLocaleString()} ${c}</div>`
-        }))
-        cdiv = `${cdiv}\n</div>`
-      }
-      if (cdiv) balDetails.innerHTML = `${balDetails.innerHTML}\n${cdiv}`
-    }))
+    var cdiv
+    cdiv = `<div id="balance-detail-card" class="card balance-card"><div class="card-header"><h4>Balances</h4></div>
+<div id="balance-detail-card-body" class="card-body">
+<table class="table">`
+    var matrix = await getBalanceMatrix(gname)
+    // Assets
+    console.log(matrix)
+    cdiv = `${cdiv}\n<tr class="table-active"><th></th>`
+    Object.keys(matrix).forEach(async c => {
+      cdiv = `${cdiv}\n<th class="color-guld">${c}</th>`
+    })
+    if (balances_cache[gname].hasOwnProperty(`${gname}:Assets`)) {
+      cdiv = `${cdiv}\n</tr><tr class="table-success"><th>Assets</th>`
+      await Promise.all(Object.keys(matrix).map(async c => {
+        var assets = balances_cache[gname][`${gname}:Assets`][c] || new ledgerTypes.Amount(0, c)
+        var val = await getUSDValue(gname, 'Assets', c)
+        cdiv = `${cdiv}\n<td class="ledger-amount" commodity="${c}" title="$${val.toNumber().toLocaleString()}">${assets.value.toNumber().toLocaleString()}</td>`
+      }))
+      cdiv = `${cdiv}\n</tr>`
+    }
+    if (balances_cache[gname].hasOwnProperty(`${gname}:Liabilities`)) {
+      cdiv = `${cdiv}\n</tr><tr class="table-danger"><th>Liabilities</th>`
+      await Promise.all(Object.keys(matrix).map(async c => {
+        var assets = balances_cache[gname][`${gname}:Liabilities`][c] || new ledgerTypes.Amount(0, c)
+        var val = await getUSDValue(gname, 'Liabilities', c)
+        cdiv = `${cdiv}\n<td class="ledger-amount" commodity="${c}" title="$${val.toNumber().toLocaleString()}">${assets.value.toNumber().toLocaleString()}</td>`
+      }))
+      cdiv = `${cdiv}\n</tr>`
+    }
+    if (balances_cache[gname].hasOwnProperty(`${gname}:Equity`)) {
+      cdiv = `${cdiv}\n</tr><tr><th>Equity</th>`
+      await Promise.all(Object.keys(matrix).map(async c => {
+        var assets = balances_cache[gname][`${gname}:Equity`][c] || new ledgerTypes.Amount(0, c)
+        var val = await getUSDValue(gname, 'Equity', c)
+        cdiv = `${cdiv}\n<td class="ledger-amount" commodity="${c}" title="$${val.toNumber().toLocaleString()}">${assets.value.toNumber().toLocaleString()}</td>`
+      }))
+      cdiv = `${cdiv}\n</tr>`
+    }
+    if (balances_cache[gname].hasOwnProperty(`${gname}:Income`)) {
+      cdiv = `${cdiv}\n</tr><tr class="table-info"><th>Income</th>`
+      await Promise.all(Object.keys(matrix).map(async c => {
+        var assets = balances_cache[gname][`${gname}:Income`][c] || new ledgerTypes.Amount(0, c)
+        var val = await getUSDValue(gname, 'Income', c)
+        cdiv = `${cdiv}\n<td class="ledger-amount" commodity="${c}" title="$${val.toNumber().toLocaleString()}">${assets.value.toNumber().toLocaleString()}</td>`
+      }))
+      cdiv = `${cdiv}\n</tr>`
+    }
+    if (balances_cache[gname].hasOwnProperty(`${gname}:Expenses`)) {
+      cdiv = `${cdiv}\n</tr><tr class="table-warning"><th>Expenses</th>`
+      await Promise.all(Object.keys(matrix).map(async c => {
+        var assets = balances_cache[gname][`${gname}:Expenses`][c] || new ledgerTypes.Amount(0, c)
+        var val = await getUSDValue(gname, 'Expenses', c)
+        cdiv = `${cdiv}\n<td class="ledger-amount" commodity="${c}" title="$${val.toNumber().toLocaleString()}">${assets.value.toNumber().toLocaleString()}</td>`
+      }))
+      cdiv = `${cdiv}\n</tr>`
+    }
+    cdiv = `${cdiv}\n</table></div>`
+    if (cdiv) balDetails.innerHTML = `${balDetails.innerHTML}\n${cdiv}`
   }
 }
 //usdValDiv.innerHTML = `~ ${assets.value.toDecimalPlaces(2).toString()} USD`
+
+async function showBalanceDetail (gname) {
+}
 
 async function getEquityCache () {
   if (!window.hasOwnProperty('equity_cache')) {
@@ -102,7 +182,7 @@ async function getEquityCache () {
       return equity_cache
     } else {
       throw new Error(`Could not reach the API`)
-    }  
+    }
   }
   return equity_cache
 }
