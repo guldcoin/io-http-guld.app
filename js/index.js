@@ -339,10 +339,10 @@ function showTransactionTypes () {
   ]
 
   ttypes = {
-    'GG': ['send', 'burn'],
+    'GG': ['send'],
     'ISYSD': ['send'],
 //    'BTC': ['deposit', 'convert'],
-    'GULD': ['send'] // , 'register', 'grant'
+    'GULD': ['send'] // , 'register', 'grant', 'burn'
   }
   alltypes.forEach(ttype => {
     if (ttypes[commodity] && ttypes[commodity].indexOf(ttype) >= 0) {
