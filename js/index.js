@@ -78,8 +78,6 @@ async function getUSDValue (gname, category, comm) {
   var assets = balances_cache[gname][`${gname}:${category}`][comm]
   var price = await getCommodityPrice(comm, 'USD', gname)
   var val = new Decimal(0)
-  console.log(price)
-  console.log(assets)
   if (price && assets && price.value && assets.value) val = price.value.mul(assets.value).mul(new Decimal(100)).round(2).div(new Decimal(100))
   return val
 }
@@ -90,7 +88,6 @@ async function getBalanceMatrix (gname) {
     var t = ATYPES[typ]
     if (balances_cache[gname].hasOwnProperty(`${gname}:${t}`)) {
       await Promise.all(balances_cache[gname][`${gname}:${t}`].commodities().map(async c => {
-        console.log(c)
         var assets = balances_cache[gname][`${gname}:${t}`][c]
         var val = await getUSDValue(gname, t, c)
         matrix[c] = matrix[c] || {}
@@ -115,7 +112,6 @@ async function showBalanceDetails (gname) {
 <table class="table">`
     var matrix = await getBalanceMatrix(gname)
     // Assets
-    console.log(matrix)
     cdiv = `${cdiv}\n<tr class="table-active"><th></th>`
     Object.keys(matrix).forEach(async c => {
       cdiv = `${cdiv}\n<th class="color-guld">${c}</th>`
@@ -242,7 +238,7 @@ async function getCommodityPrice (base='GULD', quote='USD', oname) {
   base = base.toUpperCase()
   if (!window.hasOwnProperty('prices') || !window.prices.hasOwnProperty(quote) || !window.prices[quote].hasOwnProperty(base)) {
     var exchange = 'guld-core'
-    if (['GULD', 'ISYSD', 'GG'].indexOf(base) === -1) exchange = 'coinmarketcap'
+    if (['GULD', 'ISYSD', 'GG', 'XCM'].indexOf(base) === -1) exchange = 'coinmarketcap'
       await fetch(`market/${quote}/${base}/prices/${exchange}.dat`).then(async function (response) {
       if (response.ok) {
         window.prices = window.prices || {}
