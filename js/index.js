@@ -235,13 +235,12 @@ async function showMemberDetails (gname) {
 async function getPGPKey (gname, fpr) {
   gname = gname || observer.user.username
   fpr = fpr || observer.user.signingkey
-  return keyringPGP.getPublicKey(fpr).then(pubkey => {
-    return pubkey
-  }).catch(async e => {
+  return keyringPGP.getPublicKey(fpr).then(pubkey => pubkey).catch(async e => {
     var response = await fetch(`keys/pgp/${gname}/${fpr}.asc`)
     if (response.ok) {
       pubkey = await response.text()
       await keyringPGP.importPublicKey(pubkey)
+      return pubkey
     } else {
       throw new Error(`Could not reach the API`)
     }

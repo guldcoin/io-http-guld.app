@@ -57,7 +57,9 @@ async function validateSubmitTransaction () {
   var sender = document.getElementById('guld-transaction-sender').value || perspective
   return await getPGPKey(sender).then(pubkey => {
     console.log(pubkey)
-    if (amount.greaterThan(bal)) {
+    var verified = await keyringPGP.verify(sigDiv.value, undefined, observer.user.signingkey)
+    console.log(verified)
+    if (!verified) {
       errorDisplay.setError(errmess)
       return false
     } else {
@@ -65,7 +67,6 @@ async function validateSubmitTransaction () {
       return true
     }
   }).catch(e => {
-    console.error(e)
     errorDisplay.setError(errmess)
     return false
   })
