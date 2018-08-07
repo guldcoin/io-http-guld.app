@@ -163,7 +163,7 @@ async function showMemberDetails (gname) {
   var cdiv
   if (memDetails && window.observer && observer.user) {
     cdiv = `<div id="member-detail-card" class="card member-card"><div class="card-header"><h4>Profile</h4></div>
-  <div id="member-detail-card-body" class="card-body">
+  <div id="member-detail-card-body" class="card-body table-responsive">
   <table class="table">`
     if (observer.user.name) {
       cdiv = `${cdiv}\n<tr><th class="color-guld">Full Name</th><td class="color-guld">${observer.user.name}</td></tr>`
