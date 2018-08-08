@@ -56,15 +56,34 @@ async function validateSubmitTransaction () {
   var sigDiv = document.getElementById('signed-transaction')
   var sender = document.getElementById('guld-transaction-sender').value || perspective
   return getPGPKey(sender).then(async (pubkey) => {
-    console.log(sigDiv.value)
     var verified = await keyringPGP.verify(sigDiv.value, undefined, observer.user.signingkey)
     console.log(verified)
     if (!verified) {
       errorDisplay.setError(errmess)
       return false
     } else {
-      errorDisplay.unsetError(errmess)
-      return true
+      var msg = openpgp.cleartext.readArmored(sigDiv.value).text
+      var amount = ledgerTypes.Transaction.getAmount(msg)
+      var time = ledgerTypes.Transaction.getTimestamp(msg)
+      var res = `[ ]*${sender}:Assets[ ]*${amount} ${commodity}`
+      var re = new RegExp(res)
+      console.log(re)
+      console.log(!msg.match(re))
+      console.log(amount)
+      console.log(balances_cache[perspective][`${sender}:Assets`][commodity])
+      console.log(balances_cache[perspective][`${sender}:Assets`][commodity].value.toNumber() - amount)
+      if (!msg.match(re) || amount <= 0 || balances_cache[perspective][`${sender}:Assets`][commodity].value.toNumber() - amount < 0) {
+        errorDisplay.setError(errmess)
+      } else {
+        console.log('so far, so good...')
+        return fetch(`ledger/${commodity}/${sender}/${time}.asc`)
+          .then(t => errorDisplay.setError(errmess))
+          .catch(e => {
+            console.log('write that mofo~')
+            errorDisplay.unsetError(errmess)
+            return true
+          })
+      }
     }
   }).catch(e => {
     console.error(e)
