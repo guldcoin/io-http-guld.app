@@ -34,7 +34,7 @@ h1, h2, h3 { margin-bottom: 2rem;}
     border-color: #fff;
 }
 
-a {color: #D0B460;}
+a {color: #D0B460;cursor: pointer;}
 
 .btn:hover{cursor: pointer;}
 
