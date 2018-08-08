@@ -57,7 +57,6 @@ async function validateSubmitTransaction () {
   var sender = document.getElementById('guld-transaction-sender').value || perspective
   return getPGPKey(sender).then(async (pubkey) => {
     var verified = await keyringPGP.verify(sigDiv.value, undefined, observer.user.signingkey)
-    console.log(verified)
     if (!verified) {
       errorDisplay.setError(errmess)
       return false
@@ -67,22 +66,30 @@ async function validateSubmitTransaction () {
       var time = ledgerTypes.Transaction.getTimestamp(msg)
       var res = `[ ]*${sender}:Assets[ ]*${amount} ${commodity}`
       var re = new RegExp(res)
-      console.log(re)
-      console.log(!msg.match(re))
-      console.log(amount)
-      console.log(balances_cache[perspective][`${sender}:Assets`][commodity])
-      console.log(balances_cache[perspective][`${sender}:Assets`][commodity].value.toNumber() - amount)
-      if (!msg.match(re) || amount <= 0 || balances_cache[perspective][`${sender}:Assets`][commodity].value.toNumber() - amount < 0) {
+      if (!msg.match(re) || amount >= 0 || balances_cache[perspective][`${sender}:Assets`][commodity].value.toNumber() + amount < 0) {
         errorDisplay.setError(errmess)
       } else {
-        console.log('so far, so good...')
-        return fetch(`ledger/${commodity}/${sender}/${time}.asc`)
-          .then(t => errorDisplay.setError(errmess))
-          .catch(e => {
-            console.log('write that mofo~')
+        var response = await fetch(`ledger/${commodity}/${sender}/${time}.asc`)
+        if (response.ok) errorDisplay.setError(errmess)
+        else {
+          var response = await fetch('pushtx/transfer', {
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json'
+            },
+            body: JSON.stringify({'transfer': sigDiv.value})
+          })
+          if (response.ok) {
+            var txhash = await response.text()
+            $('#submit-success-modal').modal('show')
+            document.getElementById('submit-success-message').innerHTML = `Transaction submitted. Hash: ${txhash}`
             errorDisplay.unsetError(errmess)
             return true
-          })
+          } else {
+            errorDisplay.setError(errmess)
+            return false
+          }
+        }
       }
     }
   }).catch(e => {
