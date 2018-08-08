@@ -190,40 +190,40 @@ async function showMemberDetails (gname) {
     if (observer.aliases) {
       cdiv = `${cdiv}\n<tr><th class="color-guld">Aliases</th><td class="color-guld"><ul class="list-inline">`
       if (observer.aliases.github) {
-        cdiv = `${cdiv}\n<li class="list-inline-item"><a href="https://github.com/${observer.aliases.github}"><i class="fab fa-github"></i></li>`
+        cdiv = `${cdiv}\n<li class="list-inline-item"><a href="https://github.com/${observer.aliases.github}" target="_blank"><i class="fab fa-github"></i></li>`
       }
       if (observer.aliases.bitbucket) {
-        cdiv = `${cdiv}\n<li class="list-inline-item"><a href="https://bitbucket.org/${observer.aliases.bitbucket}"><i class="fab fa-bitbucket"></i></li>`
+        cdiv = `${cdiv}\n<li class="list-inline-item"><a href="https://bitbucket.org/${observer.aliases.bitbucket}" target="_blank"><i class="fab fa-bitbucket"></i></li>`
       }
       if (observer.aliases.npm) {
-        cdiv = `${cdiv}\n<li class="list-inline-item"><a href="https://npmjs.org/~${observer.aliases.npm}"><i class="fab fa-npm"></i></li>`
+        cdiv = `${cdiv}\n<li class="list-inline-item"><a href="https://npmjs.org/~${observer.aliases.npm}" target="_blank"><i class="fab fa-npm"></i></li>`
       }
       if (observer.aliases.telegram) {
-        cdiv = `${cdiv}\n<li class="list-inline-item"><a href="https://t.me/${observer.aliases.github}"><i class="fab fa-telegram-plane"></i></li>`
+        cdiv = `${cdiv}\n<li class="list-inline-item"><a href="https://t.me/${observer.aliases.telegram}" target="_blank"><i class="fab fa-telegram-plane"></i></li>`
       }
       if (observer.aliases.facebook) {
-        cdiv = `${cdiv}\n<li class="list-inline-item"><a href="https://facebook.com/${observer.aliases.facebook}"><i class="fab fa-facebook-f"></i></li>`
+        cdiv = `${cdiv}\n<li class="list-inline-item"><a href="https://facebook.com/${observer.aliases.facebook}" target="_blank"><i class="fab fa-facebook-f"></i></li>`
       }
       if (observer.aliases.twitter) {
-        cdiv = `${cdiv}\n<li class="list-inline-item"><a href="https://twitter.com/${observer.aliases.twitter}"><i class="fab fa-twitter"></i></li>`
+        cdiv = `${cdiv}\n<li class="list-inline-item"><a href="https://twitter.com/${observer.aliases.twitter}" target="_blank"><i class="fab fa-twitter"></i></li>`
       }
       if (observer.aliases.reddit) {
-        cdiv = `${cdiv}\n<li class="list-inline-item"><a href="https://reddit.com/user/${observer.aliases.reddit}"><i class="fab fa-reddit"></i></li>`
+        cdiv = `${cdiv}\n<li class="list-inline-item"><a href="https://reddit.com/user/${observer.aliases.reddit}" target="_blank"><i class="fab fa-reddit"></i></li>`
       }
       if (observer.aliases.youtube) {
-        cdiv = `${cdiv}\n<li class="list-inline-item"><a href="https://youtube.com/channel/${observer.aliases.reddit}"><i class="fab fa-youtube"></i></li>`
+        cdiv = `${cdiv}\n<li class="list-inline-item"><a href="https://youtube.com/channel/${observer.aliases.youtube}" target="_blank"><i class="fab fa-youtube"></i></li>`
       }
       if (observer.aliases.twitch) {
-        cdiv = `${cdiv}\n<li class="list-inline-item"><a href="https://twitch.tv/${observer.aliases.twitch}"><i class="fab fa-twitch"></i></li>`
+        cdiv = `${cdiv}\n<li class="list-inline-item"><a href="https://twitch.tv/${observer.aliases.twitch}" target="_blank"><i class="fab fa-twitch"></i></li>`
       }
       if (observer.aliases.instagram) {
-        cdiv = `${cdiv}\n<li class="list-inline-item"><a href="https://instagram.com/${observer.aliases.instagram}"><i class="fab fa-instagram"></i></li>`
+        cdiv = `${cdiv}\n<li class="list-inline-item"><a href="https://instagram.com/${observer.aliases.instagram}" target="_blank"><i class="fab fa-instagram"></i></li>`
       }
       if (observer.aliases.hackernews) {
-        cdiv = `${cdiv}\n<li class="list-inline-item"><a href="https://news.ycombinator.com/user?id=${observer.aliases.hackernews}"><i class="fab fa-hacker-news-square"></i></li>`
+        cdiv = `${cdiv}\n<li class="list-inline-item"><a href="https://news.ycombinator.com/user?id=${observer.aliases.hackernews}" target="_blank"><i class="fab fa-hacker-news-square"></i></li>`
       }
       if (observer.aliases.keybase) {
-        cdiv = `${cdiv}\n<li class="list-inline-item"><a href="https://keybase.io/${observer.aliases.keybase}"><i class="fab fa-keybase"></i></li>`
+        cdiv = `${cdiv}\n<li class="list-inline-item"><a href="https://keybase.io/${observer.aliases.keybase}" target="_blank"><i class="fab fa-keybase"></i></li>`
       }
       cdiv = `${cdiv}\n</ul></td></tr>`
     }
