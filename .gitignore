@@ -4,3 +4,5 @@ ledger
 market
 dotfiles
 node_modules
+openpgp.store
+package*.json
