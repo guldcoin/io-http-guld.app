@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   window.commodity = qsLocalWindow.getValue('commodity', undefined, 'GULD')
   await changeCommodity(commodity)
   await showTransactionTypes()
+  await setTitleTag()
 })
 
 async function getPerspective (pers) {
@@ -377,3 +378,8 @@ async function validatePass () {
   return same
 }
 
+async function setTitleTag () {
+	var gn = document.getElementById('guldname').innerHTML;
+  		document.title = gn;
+ }
+ 

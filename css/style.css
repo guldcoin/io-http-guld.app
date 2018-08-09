@@ -258,16 +258,6 @@ section {
     width: 215px;
 }
 
-@media screen and (max-width: 28rem) {
-    .section-title h1 {
-        font-size: 2rem;
-        margin: 0 0 2rem 0;
-    }
-    .badge {
-        display: none !important;
-    }
-}
-
 #loading-div {
     position: fixed;
     background: rgba(0, 0, 0, 0.8);
@@ -303,3 +293,11 @@ section {
     animation: spin 2s linear infinite;
 }
 
+@media screen and (max-width: 28rem) {
+    .section-title h1 {
+        font-size: 2rem;
+        margin: 0 0 2rem 0;
+    }
+    .badge {display: none !important;}
+    .ml-auto{margin-right: auto !important;}
+}
