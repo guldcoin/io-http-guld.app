@@ -75,7 +75,7 @@ span.typed-cursor {
     color: #D0B460 !important;
 }
 
-.navbar #logo {
+.navbar picture #logo {
 	position: absolute;
 	top: 1rem;
     width: 5rem;
@@ -299,5 +299,8 @@ section {
         margin: 0 0 2rem 0;
     }
     .badge {display: none !important;}
-    .ml-auto{margin-right: auto !important;}
+    .navbar-nav{left: 1rem;}
+    .navbar-nav,.navbar-nav>li {display: inline-block;}
+    .navbar-nav>li {margin-left: 1rem;}
+    .ml-auto{margin-right: auto;}
 }
