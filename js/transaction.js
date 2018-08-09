@@ -80,9 +80,9 @@ async function validateSubmitTransaction () {
             body: JSON.stringify({'transfer': sigDiv.value})
           })
           if (response.ok) {
-            var txhash = await response.text()
+            var txpath = await response.text()
             $('#submit-success-modal').modal('show')
-            document.getElementById('submit-success-message').innerHTML = `Transaction submitted. Hash: ${txhash}`
+            document.getElementById('submit-success-message').innerHTML = `<h6>Transaction submitted</h6><br>Direct link: ${txpath}`
             errorDisplay.unsetError(errmess)
             return true
           } else {
