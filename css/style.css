@@ -71,6 +71,8 @@ span.typed-cursor {
     color: #D0B460;
 }
 
+.navbar-nav,.navbar-nav>li {display: inline-block;}
+
 .svg-inline--fa,.fa-rocket,.fa-user-astronaut,.dropdown-toggle,.active-commodity {
     color: #D0B460 !important;
 }
@@ -300,7 +302,6 @@ section {
     }
     .badge {display: none !important;}
     .navbar-nav{left: 1rem;}
-    .navbar-nav,.navbar-nav>li {display: inline-block;}
-    .navbar-nav>li {margin-left: 1rem;}
+    .navbar-nav > li {margin-left: .5rem; font-size: 1rem;}
     .ml-auto{margin-right: auto;}
 }
