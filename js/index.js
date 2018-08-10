@@ -110,6 +110,38 @@ async function getBalanceMatrix (gname) {
         matrix[c][t].value = val
         matrix[c][t].balance = assets
       }))
+      if (t === 'Equity') {
+        if (balances['gg'][t][gname]) {
+          await Promise.all(balances['gg'][t][gname].__bal.commodities().map(async c => {
+            var assets = balances['gg'][t][gname].__bal[c]
+            var val = await getUSDValue(gname, t, c)
+            matrix[c] = matrix[c] || {}
+            matrix[c][t] = matrix[c][t] || {}
+            matrix[c][t].value = val
+            matrix[c][t].balance = assets
+          }))
+        }
+        if (balances['guld'][t][gname]) {
+          await Promise.all(balances['guld'][t][gname].__bal.commodities().map(async c => {
+            var assets = balances['guld'][t][gname].__bal[c]
+            var val = await getUSDValue(gname, t, c)
+            matrix[c] = matrix[c] || {}
+            matrix[c][t] = matrix[c][t] || {}
+            matrix[c][t].value = val
+            matrix[c][t].balance = assets
+          }))
+        }
+        if (balances['isysd'][t][gname]) {
+          await Promise.all(balances['isysd'][t][gname].__bal.commodities().map(async c => {
+            var assets = balances['isysd'][t][gname].__bal[c]
+            var val = await getUSDValue(gname, t, c)
+            matrix[c] = matrix[c] || {}
+            matrix[c][t] = matrix[c][t] || {}
+            matrix[c][t].value = val
+            matrix[c][t].balance = assets
+          }))
+        }
+      }
     }
   }
   return matrix
@@ -134,7 +166,8 @@ async function showBalanceDetails (gname) {
     if (balances[gname].hasOwnProperty(`Assets`)) {
       cdiv = `${cdiv}\n</tr><tr class="table-success"><th>Assets</th>`
       await Promise.all(Object.keys(matrix).map(async c => {
-        var assets = balances[gname][`Assets`].__bal[c] || new ledgerTypes.Amount(0, c)
+        var assets = new ledgerTypes.Amount(0, c)
+        if (matrix[c].Assets && matrix[c].Assets.balance) assets = matrix[c].Assets.balance
         var val = await getUSDValue(gname, 'Assets', c)
         cdiv = `${cdiv}\n<td class="ledger-amount" commodity="${c}" title="$${val.toNumber().toLocaleString()}">${assets.value.toNumber().toLocaleString()}</td>`
       }))
@@ -143,7 +176,8 @@ async function showBalanceDetails (gname) {
     if (balances[gname].hasOwnProperty(`Liabilities`)) {
       cdiv = `${cdiv}\n</tr><tr class="table-danger"><th>Liabilities</th>`
       await Promise.all(Object.keys(matrix).map(async c => {
-        var assets = balances[gname][`Liabilities`].__bal[c] || new ledgerTypes.Amount(0, c)
+        var assets = new ledgerTypes.Amount(0, c)
+        if (matrix[c].Liabilities && matrix[c].Liabilities.balance) assets = matrix[c].Liabilities.balance
         var val = await getUSDValue(gname, 'Liabilities', c)
         cdiv = `${cdiv}\n<td class="ledger-amount" commodity="${c}" title="$${val.toNumber().toLocaleString()}">${assets.value.toNumber().toLocaleString()}</td>`
       }))
@@ -152,7 +186,8 @@ async function showBalanceDetails (gname) {
     if (balances[gname].hasOwnProperty(`Equity`)) {
       cdiv = `${cdiv}\n</tr><tr><th>Equity</th>`
       await Promise.all(Object.keys(matrix).map(async c => {
-        var assets = balances[gname][`Equity`].__bal[c] || new ledgerTypes.Amount(0, c)
+        var assets = new ledgerTypes.Amount(0, c)
+        if (matrix[c].Equity && matrix[c].Equity.balance) assets = matrix[c].Equity.balance
         var val = await getUSDValue(gname, 'Equity', c)
         cdiv = `${cdiv}\n<td class="ledger-amount" commodity="${c}" title="$${val.toNumber().toLocaleString()}">${assets.value.toNumber().toLocaleString()}</td>`
       }))
@@ -161,7 +196,8 @@ async function showBalanceDetails (gname) {
     if (balances[gname].hasOwnProperty(`Income`)) {
       cdiv = `${cdiv}\n</tr><tr class="table-info"><th>Income</th>`
       await Promise.all(Object.keys(matrix).map(async c => {
-        var assets = balances[gname][`Income`].__bal[c] || new ledgerTypes.Amount(0, c)
+        var assets = new ledgerTypes.Amount(0, c)
+        if (matrix[c].Income && matrix[c].Income.balance) assets = matrix[c].Income.balance
         var val = await getUSDValue(gname, 'Income', c)
         cdiv = `${cdiv}\n<td class="ledger-amount" commodity="${c}" title="$${val.toNumber().toLocaleString()}">${assets.value.toNumber().toLocaleString()}</td>`
       }))
@@ -170,7 +206,8 @@ async function showBalanceDetails (gname) {
     if (balances[gname].hasOwnProperty(`Expenses`)) {
       cdiv = `${cdiv}\n</tr><tr class="table-warning"><th>Expenses</th>`
       await Promise.all(Object.keys(matrix).map(async c => {
-        var assets = balances[gname][`Expenses`].__bal[c] || new ledgerTypes.Amount(0, c)
+        var assets = new ledgerTypes.Amount(0, c)
+        if (matrix[c].Expenses && matrix[c].Expenses.balance) assets = matrix[c].Expenses.balance
         var val = await getUSDValue(gname, 'Expenses', c)
         cdiv = `${cdiv}\n<td class="ledger-amount" commodity="${c}" title="$${val.toNumber().toLocaleString()}">${assets.value.toNumber().toLocaleString()}</td>`
       }))
