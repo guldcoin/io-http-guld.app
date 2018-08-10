@@ -272,7 +272,6 @@ async function showMemberStatus() {
 <a onClick="">View as another member</a> or <a href="apply.html">Apply for a name</a>.`)
   } else {
     var memtype = getMemberType(perspective)
-    console.log(memtype)
     if (memtype === 'individual') {
     } else if (memtype === 'group') {
     } else {
