@@ -186,6 +186,10 @@ section {
 	margin: 0 auto;
 }
 
+.space{
+	margin-top: 2rem;
+}
+
 .thumbnail img {
     object-fit: cover;
     height: 10rem;
