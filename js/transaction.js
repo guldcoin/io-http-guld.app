@@ -97,14 +97,21 @@ async function validateSubmitTransaction () {
     console.error(e)
     errorDisplay.setError(errmess)
     return false
-  })
-  
+  })  
 }
 
 function showRawTransaction (ttype) {
   var section = document.getElementById('section-transaction-submit')
   if (section.className.indexOf('d-none') > -1) section.className = section.className.replace(/d-none/g, '')
-  if (ttype === 'transfer') {
+  if (ttype === 'register-individual') {
+    var gname = document.getElementById('guldname').value
+    var registration = LedgerRegister.create(gname, 'individual', 1, 'GULD')
+    document.getElementById('raw-transaction').value = registration.raw
+    var link = document.getElementById('download-transaction-link')
+    link.href = `data:text/plain;charset=utf-8,${encodeURIComponent(registration.raw)}`
+    link.download = `${ledgerTypes.Transaction.getTimestamp(registration.raw)}`
+    document.getElementById('upload-transaction-link').className += ' d-none'
+  } else if (ttype === 'transfer') {
     var sender = document.getElementById('guld-transaction-sender').value
     var recipient = document.getElementById('guld-transaction-recipient').value
     var amount = document.getElementById('guld-spend-amount').value

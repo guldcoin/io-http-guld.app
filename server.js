@@ -29,6 +29,10 @@ app.get('/index.html', function(req,res){
  res.sendfile(__dirname + '/index.html');
 })
 
+app.get('/apply.html', function(req,res){
+ res.sendfile(__dirname + '/apply.html');
+})
+
 app.get('/send.html', function(req,res){
  res.sendfile(__dirname + '/send.html');
 })
@@ -37,8 +41,8 @@ app.get('/grant.html', function(req,res){
  res.sendfile(__dirname + '/grant.html');
 })
 
-app.get('/register.html', function(req,res){
- res.sendfile(__dirname + '/register.html');
+app.get('/register-individual.html', function(req,res){
+ res.sendfile(__dirname + '/register-individual.html');
 })
 
 app.get('/convert.html', function(req,res){
