@@ -85,12 +85,11 @@ async function showBalances (gname, comm="GULD") {
   if (showBalanceDetails) await showBalanceDetails(gname)
 }
 
-async function getUSDValue (gname, category, comm) {
+async function getUSDValue (assets, comm) {
   try {
-    var assets = balances[gname][category].__bal[comm]
-    var price = await getCommodityPrice(comm, 'USD', gname)
+    var price = await getCommodityPrice(comm, 'USD')
   } catch (e) {
-    console.error(e)
+    return 0
   }
   var val = new Decimal(0)
   if (price && assets && price.value && assets.value) val = price.value.mul(assets.value).mul(new Decimal(100)).round(2).div(new Decimal(100))
@@ -104,43 +103,37 @@ async function getBalanceMatrix (gname) {
     if (balances[gname].hasOwnProperty(t)) {
       await Promise.all(balances[gname][t].__bal.commodities().map(async c => {
         var assets = balances[gname][t].__bal[c]
-        var val = await getUSDValue(gname, t, c)
+        var val = await getUSDValue(assets, c)
         matrix[c] = matrix[c] || {}
         matrix[c][t] = matrix[c][t] || {}
         matrix[c][t].value = val
         matrix[c][t].balance = assets
       }))
-      if (t === 'Equity') {
-        if (balances['gg'][t][gname]) {
-          await Promise.all(balances['gg'][t][gname].__bal.commodities().map(async c => {
-            var assets = balances['gg'][t][gname].__bal[c]
-            var val = await getUSDValue(gname, t, c)
-            matrix[c] = matrix[c] || {}
-            matrix[c][t] = matrix[c][t] || {}
-            matrix[c][t].value = val
-            matrix[c][t].balance = assets
-          }))
-        }
-        if (balances['guld'][t][gname]) {
-          await Promise.all(balances['guld'][t][gname].__bal.commodities().map(async c => {
-            var assets = balances['guld'][t][gname].__bal[c]
-            var val = await getUSDValue(gname, t, c)
-            matrix[c] = matrix[c] || {}
-            matrix[c][t] = matrix[c][t] || {}
-            matrix[c][t].value = val
-            matrix[c][t].balance = assets
-          }))
-        }
-        if (balances['isysd'][t][gname]) {
-          await Promise.all(balances['isysd'][t][gname].__bal.commodities().map(async c => {
-            var assets = balances['isysd'][t][gname].__bal[c]
-            var val = await getUSDValue(gname, t, c)
-            matrix[c] = matrix[c] || {}
-            matrix[c][t] = matrix[c][t] || {}
-            matrix[c][t].value = val
-            matrix[c][t].balance = assets
-          }))
-        }
+    }
+    if (t === 'Equity') {
+      if (balances['gg'][t][gname] && gname !== 'gg') {
+        var assets = balances['gg'][t][gname].__bal['GG']
+        var val = await getUSDValue(assets, 'GG')
+        matrix['GG'] = matrix['GG'] || {}
+        matrix['GG'][t] = matrix['GG'][t] || {}
+        matrix['GG'][t].value = val
+        matrix['GG'][t].balance = assets
+      }
+      if (balances['guld'][t][gname] && gname !== 'guld') {
+        var assets = balances['guld'][t][gname].__bal['GULD']
+        var val = await getUSDValue(assets, 'GULD')
+        matrix['GULD'] = matrix['GULD'] || {}
+        matrix['GULD'][t] = matrix['GULD'][t] || {}
+        matrix['GULD'][t].value = val
+        matrix['GULD'][t].balance = assets
+      }
+      if (balances['isysd'][t][gname] && gname !== 'isysd') {
+        var assets = balances['isysd'][t][gname].__bal['ISYSD']
+        var val = await getUSDValue(assets, 'ISYSD')
+        matrix['ISYSD'] = matrix['ISYSD'] || {}
+        matrix['ISYSD'][t] = matrix['ISYSD'][t] || {}
+        matrix['ISYSD'][t].value = val
+        matrix['ISYSD'][t].balance = assets
       }
     }
   }
@@ -168,7 +161,7 @@ async function showBalanceDetails (gname) {
       await Promise.all(Object.keys(matrix).map(async c => {
         var assets = new ledgerTypes.Amount(0, c)
         if (matrix[c].Assets && matrix[c].Assets.balance) assets = matrix[c].Assets.balance
-        var val = await getUSDValue(gname, 'Assets', c)
+        var val = await getUSDValue(assets, c)
         cdiv = `${cdiv}\n<td class="ledger-amount" commodity="${c}" title="$${val.toNumber().toLocaleString()}">${assets.value.toNumber().toLocaleString()}</td>`
       }))
       cdiv = `${cdiv}\n</tr>`
@@ -178,17 +171,17 @@ async function showBalanceDetails (gname) {
       await Promise.all(Object.keys(matrix).map(async c => {
         var assets = new ledgerTypes.Amount(0, c)
         if (matrix[c].Liabilities && matrix[c].Liabilities.balance) assets = matrix[c].Liabilities.balance
-        var val = await getUSDValue(gname, 'Liabilities', c)
+        var val = await getUSDValue(assets, c)
         cdiv = `${cdiv}\n<td class="ledger-amount" commodity="${c}" title="$${val.toNumber().toLocaleString()}">${assets.value.toNumber().toLocaleString()}</td>`
       }))
       cdiv = `${cdiv}\n</tr>`
     }
-    if (balances[gname].hasOwnProperty(`Equity`)) {
+    if (balances[gname].hasOwnProperty(`Equity`) || matrix.GG && matrix.GG.Equity || matrix.GULD && matrix.GULD.Equity) {
       cdiv = `${cdiv}\n</tr><tr><th>Equity</th>`
       await Promise.all(Object.keys(matrix).map(async c => {
         var assets = new ledgerTypes.Amount(0, c)
         if (matrix[c].Equity && matrix[c].Equity.balance) assets = matrix[c].Equity.balance
-        var val = await getUSDValue(gname, 'Equity', c)
+        var val = await getUSDValue(assets, c)
         cdiv = `${cdiv}\n<td class="ledger-amount" commodity="${c}" title="$${val.toNumber().toLocaleString()}">${assets.value.toNumber().toLocaleString()}</td>`
       }))
       cdiv = `${cdiv}\n</tr>`
@@ -198,7 +191,7 @@ async function showBalanceDetails (gname) {
       await Promise.all(Object.keys(matrix).map(async c => {
         var assets = new ledgerTypes.Amount(0, c)
         if (matrix[c].Income && matrix[c].Income.balance) assets = matrix[c].Income.balance
-        var val = await getUSDValue(gname, 'Income', c)
+        var val = await getUSDValue(assets, c)
         cdiv = `${cdiv}\n<td class="ledger-amount" commodity="${c}" title="$${val.toNumber().toLocaleString()}">${assets.value.toNumber().toLocaleString()}</td>`
       }))
       cdiv = `${cdiv}\n</tr>`
@@ -208,7 +201,7 @@ async function showBalanceDetails (gname) {
       await Promise.all(Object.keys(matrix).map(async c => {
         var assets = new ledgerTypes.Amount(0, c)
         if (matrix[c].Expenses && matrix[c].Expenses.balance) assets = matrix[c].Expenses.balance
-        var val = await getUSDValue(gname, 'Expenses', c)
+        var val = await getUSDValue(assets, c)
         cdiv = `${cdiv}\n<td class="ledger-amount" commodity="${c}" title="$${val.toNumber().toLocaleString()}">${assets.value.toNumber().toLocaleString()}</td>`
       }))
       cdiv = `${cdiv}\n</tr>`
@@ -336,8 +329,7 @@ async function changeCommodity (comm) {
   return false
 }
 
-async function getCommodityPrice (base='GULD', quote='USD', oname) {
-  oname = oname || observer.user.name
+async function getCommodityPrice (base='GULD', quote='USD') {
   base = base.toUpperCase()
   if (!window.hasOwnProperty('prices') || !window.prices.hasOwnProperty(quote) || !window.prices[quote].hasOwnProperty(base)) {
     var exchange = 'guld-core'
@@ -351,15 +343,15 @@ async function getCommodityPrice (base='GULD', quote='USD', oname) {
         window.prices[quote][base] = price
       } else {
         if (base !== 'GULD' && quote === 'USD') {
-          var guldPrice = await getCommodityPrice(base, 'GULD', oname)
-          var guldUSDPrice = await getCommodityPrice('GULD', 'USD', oname)
+          var guldPrice = await getCommodityPrice(base, 'GULD')
+          var guldUSDPrice = await getCommodityPrice('GULD', 'USD')
           window.prices[quote][base] = guldUSDPrice.div(new ledgerTypes.Amount(guldPrice.value, quote))
         }
       }
     }).catch(async e => {
       if (base !== 'GULD' && quote === 'USD') {
-        var guldPrice = await getCommodityPrice(base, 'GULD', oname)
-        var guldUSDPrice = await getCommodityPrice('GULD', 'USD', oname)
+        var guldPrice = await getCommodityPrice(base, 'GULD')
+        var guldUSDPrice = await getCommodityPrice('GULD', 'USD')
         window.prices[quote][base] = guldUSDPrice.div(new ledgerTypes.Amount(guldPrice.value, quote))
       } else throw e
     })
