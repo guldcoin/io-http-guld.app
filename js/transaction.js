@@ -54,6 +54,7 @@ async function validateSpendAmount () {
 async function validateSubmitTransaction () {
   var errmess = 'Invalid transaction submitted. '
   var sigDiv = document.getElementById('signed-transaction')
+  sigDiv.value = sigDiv.value.replace('—', '--')
   var sender = document.getElementById('guld-transaction-sender').value || perspective
   return getPGPKey(sender).then(async (pubkey) => {
     var verified = await keyringPGP.verify(sigDiv.value, undefined, observer.user.signingkey)
@@ -82,7 +83,7 @@ async function validateSubmitTransaction () {
           if (response.ok) {
             var txpath = await response.text()
             $('#submit-success-modal').modal('show')
-            document.getElementById('submit-success-message').innerHTML = `<h6>Transaction submitted</h6><br>Direct link: ${txpath}`
+            document.getElementById('submit-success-message').innerHTML = `Transaction submitted<br><a href="/${txpath}" target="_blank" download="${time}.dat">${txpath}</a>`
             errorDisplay.unsetError(errmess)
             return true
           } else {
