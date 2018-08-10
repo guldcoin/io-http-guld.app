@@ -379,7 +379,7 @@ async function validatePass () {
 }
 
 async function setTitleTag () {
-	var gn = document.getElementById('guldname').innerHTML;
-  		document.title = gn;
+  var gn = document.getElementById('guldname').innerHTML
+  	  document.title = gn
  }
  
