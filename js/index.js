@@ -123,7 +123,7 @@ async function showBalanceDetails (gname) {
     balDetails.innerHTML = ""
     var cdiv
     cdiv = `<div id="balance-detail-card" class="card balance-card"><div class="card-header"><h4>Balances</h4></div>
-<div id="balance-detail-card-body" class="card-body">
+<div id="balance-detail-card-body" class="card-body table-responsive">
 <table class="table">`
     var matrix = await getBalanceMatrix(gname)
     // Assets
@@ -364,7 +364,7 @@ async function validatePass () {
 }
 
 async function setTitleTag () {
-	var gn = document.getElementById('guldname').innerHTML;
-  		document.title = gn;
+  var gn = document.getElementById('guldname').innerHTML
+  	  document.title = gn
  }
  
