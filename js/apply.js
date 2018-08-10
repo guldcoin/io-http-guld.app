@@ -97,7 +97,7 @@ ${document.getElementById('signed-transaction').value}
 
 ${document.getElementById('pubkey-import').value}
 `
-  document.getElementById('email-application').href = `mailto:info@guld.io?subject=${encodeURIComponent(document.getElementById('rendered-subject').value)}&body=${encodeURIComponent(document.getElementById('rendered-application').value)}`
+  document.getElementById('email-application').href = `mailto:apply@guld.io?subject=${encodeURIComponent(document.getElementById('rendered-subject').value)}&body=${encodeURIComponent(document.getElementById('rendered-application').value)}`
   document.getElementById('download-application-link').href = `data:text/plain;charset=utf-8,${encodeURI(document.getElementById('rendered-application').value)}`
 }
 
