@@ -276,6 +276,7 @@ async function changePerspective (per) {
   per = per.toLowerCase()
   window.perspective = qsLocalWindow.getValue('perspective', `?perspective=${per}`, per)
   await loadPerspective(per)
+  await setTitleTag()
   $('#login-dropdown-toggle').dropdown("toggle");
 }
 
@@ -294,6 +295,7 @@ async function changeCommodity (comm) {
   }
   await showBalances(perspective, commodity)
   await showTransactionTypes()
+  await setTitleTag()
   return false
 }
 
@@ -364,7 +366,8 @@ async function validatePass () {
 }
 
 async function setTitleTag () {
-  var gn = document.getElementById('guldname').innerHTML
-  	  document.title = gn
- }
+  var bal = 0
+  if (balances[perspective] && balances[perspective]['Assets'] && balances[perspective]['Assets'].__bal[commodity]) bal = balances[perspective]['Assets'].__bal[commodity].value.toNumber().toLocaleString()
+  document.title = `${perspective} ${bal} ${commodity}`
+}
  
