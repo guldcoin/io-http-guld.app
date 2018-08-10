@@ -39,9 +39,9 @@ async function validateSpendAmount () {
     return false
   }
   var bal = new Decimal(0)
-  window.balances_cache = window.balances_cache || {}
-  balances_cache = await getBalances(sender, commodity)
-  if (balances_cache[sender] && balances_cache[sender][`${sender}:Assets`] && balances_cache[sender][`${sender}:Assets`][commodity]) bal = balances_cache[sender][`${sender}:Assets`][commodity].value
+  window.balances = window.balances || new ledgerTypes.Amount()
+  balances = await getBalances()
+  if (balances[sender] && balances[sender][`Assets`] && balances[sender][`Assets`].__bal[commodity]) bal = balances[sender][`Assets`].__bal[commodity].value
   if (amount.greaterThan(bal)) {
     errorDisplay.setError(errmess)
     return false
@@ -66,7 +66,7 @@ async function validateSubmitTransaction () {
       var time = ledgerTypes.Transaction.getTimestamp(msg)
       var res = `[ ]*${sender}:Assets[ ]*${amount} ${commodity}`
       var re = new RegExp(res)
-      if (!msg.match(re) || amount >= 0 || balances_cache[perspective][`${sender}:Assets`][commodity].value.toNumber() + amount < 0) {
+      if (!msg.match(re) || amount >= 0 || balances[perspective][`Assets`].__bal[commodity].value.toNumber() + amount < 0) {
         errorDisplay.setError(errmess)
       } else {
         var response = await fetch(`ledger/${commodity}/${sender}/${time}.asc`)

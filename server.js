@@ -9,6 +9,7 @@ const { Decimal } = require('decimal.js')
 global.Decimal = Decimal
 const keyringPGP = require('keyring-pgp')
 const ledgerTypes = require('ledger-types')
+const { setEquity } = require('guld-ledger-cache')
 var fs
 
 app.use('/js', express.static('js'))
@@ -86,7 +87,7 @@ app.post('/pushtx/transfer', async function(req, res) {
     var restr = `[ ]*${sender}:Assets[ ]*${amount} ${commodity}`
     var re = new RegExp(restr)
     var bals = await getBalances(sender, commodity)
-    if (!msg.match(re) || amount >= 0 || bals[sender][`${sender}:Assets`][commodity].value.toNumber() + amount < 0) {
+    if (!msg.match(re) || amount >= 0 || bals[sender][`Assets`].__bal[commodity].value.toNumber() + amount < 0) {
       return res.status(400).send('Invalid transaction.')
     } else {
       fs.readFile(`ledger/${commodity}/${sender}/${time}.dat`).then(f => {
@@ -94,6 +95,8 @@ app.post('/pushtx/transfer', async function(req, res) {
       }).catch(async e => {
         await fs.writeFile(path.join(home, `ledger/${commodity}/${sender}/${time}.dat.asc`), req.body.transfer)
         await fs.writeFile(path.join(home, `ledger/${commodity}/${sender}/${time}.dat`), msg)
+        await fs.appendFile(path.join(home, `ledger/journal.cache`), `\n${msg}`)
+        await setEquity()
         res.send(`ledger/${commodity}/${sender}/${time}.dat`)
       })
     }
@@ -109,27 +112,9 @@ async function getPGPKey (gname, fpr) {
   })
 }
 
-async function getBalances (gname, comm="") {
-  var bals = {}
-  bals[gname] = {}
-  var equity_cache = await fs.readFile(path.join(home, 'ledger', 'GULD', 'equity.cache'), 'utf-8')
-  var restr = `^.*${gname}.*${comm}$`
-  var restr2 = `^\ *${gname}:.*${comm}$`
-  var restr3 = `^.*:${gname}[: ]{1}.*${comm}$`
-  try {
-    var matches = equity_cache.match(new RegExp(restr, 'gm')).filter(m => m.match(new RegExp(restr2, 'gm')) || m.match(new RegExp(restr3, 'gm')))
-  } catch (e) {
-    bals[gname][`${gname}:Assets`] = new ledgerTypes.Balance(new ledgerTypes.Amount(0, comm))
-    return bals
-  }
-  matches.forEach(m => {
-    var sm = m.trim().split("  ")
-    var amt = sm.slice(-1)[0].trim().split(' ')
-    bals[gname][sm[0].trim()] = bals[gname][sm[0].trim()] || new ledgerTypes.Balance({})
-    var amount = new ledgerTypes.Amount(amt[0].replace(/,/g, ''), amt[1])
-    bals[gname][sm[0].trim()] = bals[gname][sm[0].trim()].addAmount(amount)
-  })
-  return bals
+async function getBalances () {
+  var equity_cache = await fs.readFile(path.join(home, 'ledger', 'equity.cache'), 'utf-8')
+  return ledgerTypes.Account.createFromEquity(equity_cache)
 }
 
 app.listen(3000, () => console.log('Debug guld app listening on port 3000'))

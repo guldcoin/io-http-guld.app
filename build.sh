@@ -1,8 +1,16 @@
 #!/bin/bash
-ln -sf ~/ledger ledger
-ln -sf ~/market market
-ln -sf ~/keys keys
-ln -sf ~/dotfiles/ dotfiles
+if [ ! -d ledger ]; then
+  ln -sf ~/ledger ledger
+fi
+if [ ! -d market ]; then
+  ln -sf ~/market market
+fi
+if [ ! -d keys ]; then
+  ln -sf ~/keys keys
+fi
+if [ ! -d dotfiles ]; then
+  ln -sf ~/dotfiles/ dotfiles
+fi
 rm js/decimal.min.js; cp -f ~/tech/js/node_modules/decimal.js/decimal.min.js js/decimal.min.js
 rm js/qs-local-window.js; cp -f ~/tech/js/node_modules/qs-local-window/qs-local-window.js js/
 rm js/error-display.js; cp -f ~/tech/js/node_modules/error-display/error-display.js js/
