@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   await changeCommodity(commodity)
   await showTransactionTypes()
   await setTitleTag()
+  await showMobileTitle()
 })
 
 async function getPerspective (pers) {
@@ -282,3 +283,13 @@ async function showMemberStatus() {
   }
 }
 
+async function showMobileTitle() {
+	$(".ledger-amount").click(function () {
+    var $title = $(this).find(".mobitle")
+    if (!$title.length) {
+        $(this).append('<span class="mobitle">' + $(this).attr("title") + '</span>')
+    } else {
+        $title.remove()
+    }
+})
+}

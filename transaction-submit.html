@@ -10,20 +10,20 @@
                     <div>
                         <textarea class="transaction-textarea" rows="7" id="raw-transaction"></textarea>
                     </div>
-                    <div class="text-right">
-                        <a id="copy-transaction" onClick="var el = document.getElementById('raw-transaction'); el.focus(); el.select(); document.execCommand('copy')"><i class="fas fa-copy fa-2x"></i></a>
-                        <a id="download-transaction-link"><i class="fas fa-file-download fa-2x"></i></a>
+                    <div class="text-center">
+                        <a id="copy-transaction" title="Copy Transaction" onClick="var el = document.getElementById('raw-transaction'); el.focus(); el.select(); document.execCommand('copy')"><i class="fas fa-copy fa-2x"></i></a>
+                        <a id="download-transaction-link" title="Download Transaction"><i class="fas fa-file-download fa-2x"></i></a>
                     </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-6 mobilespace">
                     <div>
                         <h4 class="text-center">Signed Transaction</h4>
                     </div>
                     <div>
                         <textarea class="transaction-textarea" rows="7" id="signed-transaction"></textarea>
                     </div>
-                    <div class="text-right">
-                        <a id="upload-transaction-link" onclick="validateSubmitTransaction(null)"><i class="fas fa-cloud-upload-alt fa-2x"></i></a>
+                    <div class="text-center">
+                        <a id="upload-transaction-link" title="Upload Transaction" onclick="validateSubmitTransaction(null)"><i class="fas fa-cloud-upload-alt fa-2x"></i></a>
                     </div>
                     <div class="modal" tabindex="-1" role="dialog" id="submit-success-modal">
                       <div class="modal-dialog modal-dialog-centered" role="document">

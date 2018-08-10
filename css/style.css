@@ -183,8 +183,7 @@ section {
 }
 
 .dash-card {
-    max-width: 80%
-    margin: 0 auto;
+	margin: 0 auto;
 }
 
 .thumbnail img {
@@ -301,15 +300,22 @@ section {
     animation: spin 2s linear infinite;
 }
 
+.ledger-amount .mobitle {
+    position: absolute;
+    top: 1rem;
+    background: black;
+    color: #D0B460;
+    padding: 1rem;
+    left: 0;
+    white-space: nowrap;
+}
+
 @media screen and (max-width: 28rem) {
-    .section-title h1 {
-        font-size: 2rem;
-        margin: 0 0 2rem 0;
-    }
-    .badge {display: none !important;}
+    .section-title h1 {font-size: 2rem;margin: 0 0 2rem 0;}
     .navbar-nav{left: 1rem;}
     .navbar-nav > li {margin-left: .5rem; font-size: 1rem;}
     .ml-auto{margin-right: auto;}
+    .mobilespace{margin-top: 2rem;}
 }
 
 #rendered-application {

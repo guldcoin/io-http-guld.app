@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   await showMemberStatus()
   await showTransactionTypes()
   await setTitleTag()
+  await showMobileTitle()
 })
 
 async function showBalanceDetails (gname) {
