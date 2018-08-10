@@ -307,7 +307,7 @@ section {
 .ledger-amount .mobitle {
     position: absolute;
     top: 1rem;
-    background: black;
+    background: #000;
     color: #D0B460;
     padding: 1rem;
     left: 0;
