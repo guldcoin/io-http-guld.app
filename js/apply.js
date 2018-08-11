@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   await showTransactionTypes()
   showRawTransaction('register-individual')
   await setTitleTag()
+  await showMobileTooltip()
   $('#signed-transaction').blur(validateApplication)
 })
 
