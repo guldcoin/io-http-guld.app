@@ -62,7 +62,7 @@ async function showBalanceDetails (gname) {
         var assets = new ledgerTypes.Amount(0, c)
         if (matrix[c].Income && matrix[c].Income.balance) assets = matrix[c].Income.balance
         var val = await getUSDValue(assets, c)
-        cdiv = `${cdiv}\n<span  title="$${val.toNumber().toLocaleString()}" rel="tooltip"><td class="ledger-amount" commodity="${c}">${assets.value.toNumber().toLocaleString()}</span></td>`
+        cdiv = `${cdiv}\n<span title="$${val.toNumber().toLocaleString()}" rel="tooltip"><td class="ledger-amount" commodity="${c}">${assets.value.toNumber().toLocaleString()}</span></td>`
       }))
       cdiv = `${cdiv}\n</tr>`
     }
