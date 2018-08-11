@@ -103,9 +103,9 @@ span.typed-cursor {
     padding: 0;
 }
 
-#err-div {
-	left: 50%;
-	transform: translate(-50%);
+.alert {
+	max-width: 50%;
+    margin: 1rem auto;
 }
 
 .alert-danger {
@@ -114,6 +114,10 @@ span.typed-cursor {
 
 .alert-dismissible {
 	padding: .73rem;
+}
+
+.modal-content {
+	padding: 1rem;
 }
 
 .navbar-nav .dropdown-menu {
@@ -176,8 +180,13 @@ section {
     margin: 0.5em;
 }
 
-.transaction-textarea {
-    width: 100%;
+textarea {
+	margin-bottom: .5rem;
+	width: 100%;
+}
+
+input {
+	width: 100%;
 }
 
 .fa-copy {
@@ -188,8 +197,8 @@ section {
 	margin: 0 auto;
 }
 
-.space{
-	margin-top: 2rem;
+.space {
+	margin-bottom: 2rem;
 }
 
 .thumbnail img {
@@ -306,11 +315,14 @@ section {
     animation: spin 2s linear infinite;
 }
 
+@media screen and (max-width: 48rem) {
+    .alert {max-width: 90%}
+}
+
 @media screen and (max-width: 28rem) {
     .section-title h1 {font-size: 2rem;margin: 0 0 2rem 0;}
     .navbar-nav{left: 1rem;}
     .navbar-nav > li {margin-left: .5rem; font-size: 1rem;}
-    .mobilespace{margin-top: 2rem;}
 }
 
 #rendered-application {

@@ -29,19 +29,19 @@
                         <div class="form-group row">
                             <label for="guldname" class="col-sm-5 col-form-label">Username</label>
                             <div class="col-sm-7">
-                                <input type="text" id="guldname" placeholder="Username" autocomplete="username" value=""></input>
+                                <input type="text" id="guldname" placeholder="Username" autocomplete="username" value="">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="fullname" class="col-sm-5 col-form-label">Full Name (optional)</label>
                             <div class="col-sm-7">
-                                <input type="text" id="fullname" placeholder="Full Name (optional)" autocomplete="fullname" value=""></input>
+                                <input type="text" id="fullname" placeholder="Full Name (optional)" autocomplete="fullname" value="">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="guldmail" class="col-sm-5 col-form-label">Email</label>
                             <div class="col-sm-7">
-                                <input type="text" id="guldmail" placeholder="Email (must match PGP UserID)" autocomplete="email" value="" onblur="javascript:validateEmail()"></input>
+                                <input type="text" id="guldmail" placeholder="Email (must match PGP UserID)" autocomplete="email" value="" onblur="javascript:validateEmail()">
                             </div>
                         </div>
                     </div>
@@ -59,10 +59,10 @@
                             <label for="pubkey-import" class="col-sm-5 col-form-label">Import PGP Public Key</label>
                             <div id="pubkey-import-div" class="col-sm-7">
                                 <textarea id="pubkey-import" placeholder="ASCII Armored PGP Public Key" cols="35" rows="15" onblur="javascript:validatePGPKey()"></textarea>
-                                <input type="text" id="guldfpr" placeholder="Guld Key Fingerprint" disabled value="" disabled></input>
+                                <input type="text" id="guldfpr" placeholder="Guld Key Fingerprint" value="" disabled>
                             </div>
                         </div>
-                        <input type="hidden" id="rendered-subject"></input>
+                        <input type="hidden" id="rendered-subject">
                     </div>
                     <div class="col-md-2"></div>
                 </div>

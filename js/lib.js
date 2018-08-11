@@ -279,5 +279,4 @@ async function showMemberStatus() {
 <a onClick="">View as another member</a> or <a href="apply.html">apply for the name ${perspective}</a>.`)
     }
   }
-}	
 }
