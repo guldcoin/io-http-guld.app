@@ -287,7 +287,7 @@ async function showMobileTooltip() {
       target = false,
       tooltip = false,
       title = false
-    targets.bind('mouseenter', function() {
+    targets.bind('mouseover', function() {
       target = $(this)
       tip = target.attr('title')
       tooltip = $('<div id="tooltip"></div>')
