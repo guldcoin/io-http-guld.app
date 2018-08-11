@@ -315,6 +315,7 @@ section {
     padding: 15px;
 }
  
+/*
 #tooltip:after {
     width: 0;
     height: 0;
@@ -345,6 +346,7 @@ section {
     left: auto;
     margin: 0;
 }
+*/
 
 @media screen and (max-width: 28rem) {
     .section-title h1 {font-size: 2rem;margin: 0 0 2rem 0;}
