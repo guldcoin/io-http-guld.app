@@ -81,6 +81,8 @@ span.typed-cursor {
 
 .navbar-nav,.navbar-nav>li {display: inline-block;}
 
+.navbar-nav > li {margin-left: .7rem;}
+
 .svg-inline--fa,.fa-rocket,.fa-user-astronaut,.dropdown-toggle,.active-commodity {
     color: #D0B460 !important;
 }
@@ -308,7 +310,6 @@ section {
     .section-title h1 {font-size: 2rem;margin: 0 0 2rem 0;}
     .navbar-nav{left: 1rem;}
     .navbar-nav > li {margin-left: .5rem; font-size: 1rem;}
-    .ml-auto{margin-right: auto;}
     .mobilespace{margin-top: 2rem;}
 }
 
