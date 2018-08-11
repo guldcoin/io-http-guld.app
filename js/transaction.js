@@ -109,7 +109,7 @@ function showRawTransaction (ttype) {
     document.getElementById('raw-transaction').value = registration.raw
     var link = document.getElementById('download-transaction-link')
     link.href = `data:text/plain;charset=utf-8,${encodeURIComponent(registration.raw)}`
-    link.download = `${ledgerTypes.Transaction.getTimestamp(registration.raw)}`
+    link.download = `${ledgerTypes.Transaction.getTimestamp(registration.raw)}.dat`
     document.getElementById('upload-transaction-link').className += ' d-none'
   } else if (ttype === 'transfer') {
     var sender = document.getElementById('guld-transaction-sender').value.toLowerCase()
@@ -120,7 +120,7 @@ function showRawTransaction (ttype) {
     rawtx.value = transfer.raw
     var link = document.getElementById('download-transaction-link')
     link.href = `data:text/plain;charset=utf-8,${encodeURIComponent(transfer.raw)}`
-    link.download = `${ledgerTypes.Transaction.getTimestamp(transfer.raw)}`
+    link.download = `${ledgerTypes.Transaction.getTimestamp(transfer.raw)}.dat`
   }
   return false
 }
