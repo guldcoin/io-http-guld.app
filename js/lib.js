@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   await changeCommodity(commodity)
   await showTransactionTypes()
   await setTitleTag()
+  await bsTooltip()
 })
 
 async function getPerspective (pers) {
@@ -266,7 +267,7 @@ function getMemberType(member) {
   else if (balances.guld.Income.register.device && balances.guld.Income.register.device.hasOwnProperty(member)) return 'device'
 }
  
-async function showMemberStatus() {
+async function showMemberStatus () {
   if (perspective === 'guld') {
       errorDisplay.setError(`You are viewing the guld group account, not your own. 
 <a onClick="">View as another member</a> or <a href="apply.html">Apply for a name</a>.`)
@@ -279,4 +280,14 @@ async function showMemberStatus() {
 <a onClick="">View as another member</a> or <a href="apply.html">apply for the name ${perspective}</a>.`)
     }
   }
+}
+
+async function bsTooltip ($b,$dt,m) {
+  $b = $('body')	
+  $dt = $('[data-toggle="tooltip"]')
+  m == /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ?
+  $dt.tooltip({animation:true,placement:'bottom',container:'body',trigger:'click'}) :
+  $dt.tooltip({animation:true,placement:'bottom',container:'body',trigger:'hover'})
+  $b.on('click', function (e) {
+  $dt.each(function () {if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.tooltip').has(e.target).length === 0) {$(this).tooltip('hide')}})})  
 }

@@ -189,6 +189,11 @@ input {
 	width: 100%;
 }
 
+.tooltip-inner {
+	border: solid #D0B460;
+	color: #D0B460;
+}
+
 .fa-copy {
     margin: 0 0.25em;
 }
