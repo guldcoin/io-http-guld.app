@@ -112,8 +112,8 @@ function showRawTransaction (ttype) {
     link.download = `${ledgerTypes.Transaction.getTimestamp(registration.raw)}`
     document.getElementById('upload-transaction-link').className += ' d-none'
   } else if (ttype === 'transfer') {
-    var sender = document.getElementById('guld-transaction-sender').value
-    var recipient = document.getElementById('guld-transaction-recipient').value
+    var sender = document.getElementById('guld-transaction-sender').value.toLowerCase()
+    var recipient = document.getElementById('guld-transaction-recipient').value.toLowerCase()
     var amount = document.getElementById('guld-spend-amount').value
     var transfer = LedgerTransfer.create(sender, recipient, amount, commodity)
     var rawtx = document.getElementById('raw-transaction')
