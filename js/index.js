@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', async function () {
   await showMemberStatus()
   await showTransactionTypes()
   await setTitleTag()
-  await showMobileTooltip()
 })
 
 async function showBalanceDetails (gname) {
@@ -32,7 +31,7 @@ async function showBalanceDetails (gname) {
         var assets = new ledgerTypes.Amount(0, c)
         if (matrix[c].Assets && matrix[c].Assets.balance) assets = matrix[c].Assets.balance
         var val = await getUSDValue(assets, c)
-        cdiv = `${cdiv}\n<td class="ledger-amount" commodity="${c}"><span title="$${val.toNumber().toLocaleString()}" rel="tooltip">${assets.value.toNumber().toLocaleString()}</span></td>`
+        cdiv = `${cdiv}\n<td class="ledger-amount" commodity="${c}" title="$${val.toNumber().toLocaleString()}">${assets.value.toNumber().toLocaleString()}</td>`
       }))
       cdiv = `${cdiv}\n</tr>`
     }
@@ -42,7 +41,7 @@ async function showBalanceDetails (gname) {
         var assets = new ledgerTypes.Amount(0, c)
         if (matrix[c].Liabilities && matrix[c].Liabilities.balance) assets = matrix[c].Liabilities.balance
         var val = await getUSDValue(assets, c)
-        cdiv = `${cdiv}\n<td class="ledger-amount" commodity="${c}"><span title="$${val.toNumber().toLocaleString()}" rel="tooltip">${assets.value.toNumber().toLocaleString()}</span></td>`
+        cdiv = `${cdiv}\n<td class="ledger-amount" commodity="${c}" title="$${val.toNumber().toLocaleString()}">${assets.value.toNumber().toLocaleString()}</td>`
       }))
       cdiv = `${cdiv}\n</tr>`
     }
@@ -52,7 +51,7 @@ async function showBalanceDetails (gname) {
         var assets = new ledgerTypes.Amount(0, c)
         if (matrix[c].Equity && matrix[c].Equity.balance) assets = matrix[c].Equity.balance
         var val = await getUSDValue(assets, c)
-        cdiv = `${cdiv}\n<td class="ledger-amount" commodity="${c}"><span title="$${val.toNumber().toLocaleString()}" rel="tooltip">${assets.value.toNumber().toLocaleString()}</span></td>`
+        cdiv = `${cdiv}\n<td class="ledger-amount" commodity="${c}" title="$${val.toNumber().toLocaleString()}">${assets.value.toNumber().toLocaleString()}</td>`
       }))
       cdiv = `${cdiv}\n</tr>`
     }
@@ -62,7 +61,7 @@ async function showBalanceDetails (gname) {
         var assets = new ledgerTypes.Amount(0, c)
         if (matrix[c].Income && matrix[c].Income.balance) assets = matrix[c].Income.balance
         var val = await getUSDValue(assets, c)
-        cdiv = `${cdiv}\n<td class="ledger-amount" commodity="${c}"><span title="$${val.toNumber().toLocaleString()}" rel="tooltip">${assets.value.toNumber().toLocaleString()}</span></td>`
+        cdiv = `${cdiv}\n<td class="ledger-amount" commodity="${c}" title="$${val.toNumber().toLocaleString()}">${assets.value.toNumber().toLocaleString()}</td>`
       }))
       cdiv = `${cdiv}\n</tr>`
     }
@@ -72,7 +71,7 @@ async function showBalanceDetails (gname) {
         var assets = new ledgerTypes.Amount(0, c)
         if (matrix[c].Expenses && matrix[c].Expenses.balance) assets = matrix[c].Expenses.balance
         var val = await getUSDValue(assets, c)
-        cdiv = `${cdiv}\n<td class="ledger-amount" commodity="${c}"><span title="$${val.toNumber().toLocaleString()}" rel="tooltip">${assets.value.toNumber().toLocaleString()}</span></td>`
+        cdiv = `${cdiv}\n<td class="ledger-amount" commodity="${c}" title="$${val.toNumber().toLocaleString()}">${assets.value.toNumber().toLocaleString()}</td>`
       }))
       cdiv = `${cdiv}\n</tr>`
     }

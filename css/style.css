@@ -306,15 +306,6 @@ section {
     animation: spin 2s linear infinite;
 }
 
-#tooltip {
-    text-align: center;
-    color: #D0B460;
-    background: #000;
-    position: absolute;
-    z-index: 100;
-    padding: 1rem;
-}
-
 @media screen and (max-width: 28rem) {
     .section-title h1 {font-size: 2rem;margin: 0 0 2rem 0;}
     .navbar-nav{left: 1rem;}
