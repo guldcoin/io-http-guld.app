@@ -8,8 +8,7 @@ Website: https://riomyers.com
 body {
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
-    background: #000000;
-    background-image: url("../img/background.png") no-repeat center center fixed;
+    background: #000;
     background-size: cover;
     height: 95vh;
     min-height: 100%;
@@ -179,8 +178,15 @@ section {
 }
 
 textarea {
-	margin-bottom: .5rem;
+	box-sizing: border-box;	
 	width: 100%;
+	min-height: 200px;
+	margin-bottom: .5rem;
+}
+
+textarea:focus, input:focus, input[type]:focus, .uneditable-input:focus {   
+    border-color: #D0B460;
+    outline: 0 none;
 }
 
 input {
@@ -326,7 +332,7 @@ input {
 @media screen and (max-width: 28rem) {
     .section-title h1 {font-size: 2rem;margin: 0 0 2rem 0;}
     .navbar-nav{left: 1rem;}
-    .navbar-nav > li {margin-left: .5rem; font-size: 1rem;}
+    .navbar-nav > li {margin-left: .5rem;font-size: 1rem;}
 }
 
 #rendered-application {
