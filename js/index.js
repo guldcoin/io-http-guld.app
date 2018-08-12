@@ -112,7 +112,7 @@ async function showMemberDetails (gname) {
       cdiv = `${cdiv}\n<tr><th class="color-guld">PGP Key</th><td class="color-guld"><a href="/keys/pgp/${observer.user.username}/${observer.user.signingkey}.asc" download>${observer.user.signingkey}</td></tr>`
     }
     if (observer.aliases) {
-      cdiv = `${cdiv}\n<tr><th class="color-guld">Aliases</th><td class="color-guld"><ul class="list-inline">`
+      cdiv = `${cdiv}\n<tr><th class="color-guld">Aliases</th><td class="color-guld"><ul class="list-inline aliases">`
       if (observer.aliases.github) {
         cdiv = `${cdiv}\n<li class="list-inline-item"><a href="https://github.com/${observer.aliases.github}" target="_blank"><i class="fab fa-github"></i></li>`
       }

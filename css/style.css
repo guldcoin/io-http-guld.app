@@ -198,6 +198,10 @@ input {
 	color: #D0B460;
 }
 
+.aliases{
+	font-size: 2rem;
+}
+
 .fa-copy {
     margin: 0 0.25em;
 }
