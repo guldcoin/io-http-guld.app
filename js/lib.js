@@ -168,6 +168,7 @@ async function changePerspective (per) {
   window.perspective = qsLocalWindow.getValue('perspective', `?perspective=${per}`, per)
   await loadPerspective(per)
   await setTitleTag()
+  await bsTooltip()
   $('#login-dropdown-toggle').dropdown("toggle")
 }
 
@@ -187,6 +188,7 @@ async function changeCommodity (comm) {
   await showBalances(perspective, commodity)
   await showTransactionTypes()
   await setTitleTag()
+  await bsTooltip()
   return false
 }
 
