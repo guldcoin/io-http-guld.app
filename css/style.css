@@ -81,8 +81,6 @@ span.typed-cursor {
 
 .navbar-nav,.navbar-nav>li {display: inline-block;}
 
-.navbar-nav > li {margin-left: .7rem;}
-
 .svg-inline--fa,.fa-rocket,.fa-user-astronaut,.dropdown-toggle,.active-commodity {
     color: #D0B460 !important;
 }
