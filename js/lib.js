@@ -285,7 +285,7 @@ async function showMemberStatus () {
 }
 
 async function bsTooltip ($b,$dt,m) {
-  $b = $('body')	
+  $b = $('body')
   $dt = $('[data-toggle="tooltip"]')
   m == /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ?
   $dt.tooltip({animation:true,placement:'bottom',container:'body',trigger:'click'}) :
