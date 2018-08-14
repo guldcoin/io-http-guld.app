@@ -67,12 +67,6 @@ code {
 	padding: .2em;	
 }
 
-span.typed-cursor {
-    font-size: 4.4rem;
-    color: #fff;
-    animation: blink-animation 1s steps(3, start) infinite;
-}
-
 .navbar-nav {
     font-size: 1.5em;
     color: #D0B460;
@@ -234,6 +228,10 @@ input {
     color: #888;
     display: block;
     font-weight: normal;
+}
+
+ul {
+	list-style: none;
 }
 
 .list-group {

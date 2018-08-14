@@ -32,15 +32,3 @@ jQuery(function ($) {
 		});
 
 }); // JQuery end
-// var background = document.getElementById('background');
-// background.playbackRate = 0.8;
-
-/*
-var typed3 = new Typed('#text', {
-    strings: ['A new <i>secure</i> internet ', 'A new <strong>better</strong> internet', 'A new decentralized internet'],
-    typeSpeed: 80,
-    backSpeed: 50,
-    smartBackspace: true, // this is a default
-    loop: false
-});
-*/

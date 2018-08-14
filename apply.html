@@ -54,9 +54,20 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-2"></div>
-                    <div class="col-md-8 text-center" id="wallet-wrapper">
+                    <div class="col-md-8 text-center" id="wallet-wrapper">	                    
                         <div class="form-group row">
-                            <label for="pubkey-import" class="col-sm-5 col-form-label">Import PGP Public Key</label>
+                            <label for="pubkey-import" class="col-sm-5 col-form-label">
+                            <h4>Import PGP Public Key</h4><br>
+                            <h6>Recommended PGP Key Managers</h6>
+	                            <p>Everything you need to get started with secure communication and encrypting files in one simple package leveraging the power of OpenPGP/GPG</p>
+								<p><small>If you are using <span class="color-guld">Windows</span>, please make sure to install <span class="color-guld">GPA</span> instead of <span class="color-guld">Kleopatra</span></small></p>
+	                            <ul class="list-inline">
+	                            	<li class="list-inline-item"><a href="https://www.gpg4win.org" target="_blank">Windows</a></li>
+		                            <li class="list-inline-item"><a href="https://gpgtools.org/" target="_blank">MacOS</a></li>
+		                            <li class="list-inline-item"><a href="https://www.gnupg.org" target="_blank">Linux</a></li>
+		                            <li class="list-inline-item"><a href="https://chrome.google.com/webstore/detail/pgp-anywhere/cdlcdnmhcodhagbmljapgbjdimjckilb" target="_blank">Chrome Extension</a></li>
+	                            </ul>                            
+                            </label>
                             <div id="pubkey-import-div" class="col-sm-7">
                                 <textarea id="pubkey-import" placeholder="ASCII Armored PGP Public Key" cols="35" rows="15" onblur="javascript:validatePGPKey()"></textarea>
                                 <input type="text" id="guldfpr" placeholder="Guld Key Fingerprint" value="" disabled>
