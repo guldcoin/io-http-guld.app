@@ -46,9 +46,11 @@ a {
 	cursor: pointer;
 }
 
-button{cursor: pointer;}
+a, a:hover, a:visited, a:focus {
+    text-decoration:none;
+}
 
-.btn:hover{cursor: pointer;}
+button, .btn:hover{cursor: pointer;text-decoration:none;}
 
 .btn:focus{box-shadow: none;}
 
@@ -94,7 +96,7 @@ code {
     padding: 0;
 }
 
-.alert {
+.alert, .accordion {
 	max-width: 70%;
     margin: 1rem auto;
 }
@@ -327,7 +329,7 @@ ul {
 }
 
 @media screen and (max-width: 48rem) {
-    .alert {max-width: 90%}
+    .alert, .accordion {max-width: 90%}
     .navbar-nav > li {margin-left: 1rem;}
 }
 
